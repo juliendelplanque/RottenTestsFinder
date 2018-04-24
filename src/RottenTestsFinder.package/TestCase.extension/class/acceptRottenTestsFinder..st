@@ -1,0 +1,3 @@
+*RottenTestsFinder
+acceptRottenTestsFinder: aRottenTestsFinder
+	aRottenTestsFinder visitTestCaseClass: self
