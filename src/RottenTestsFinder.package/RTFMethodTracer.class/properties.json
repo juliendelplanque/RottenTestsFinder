@@ -1,0 +1,18 @@
+{
+	"commentStamp" : "PavelKrivanek 8/2/2017 11:57",
+	"super" : "ProtoObject",
+	"category" : "RottenTestsFinder",
+	"classinstvars" : [
+		"wrappers"
+	],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"hasRun",
+		"methodClass",
+		"selector",
+		"method"
+	],
+	"name" : "RTFMethodTracer",
+	"type" : "normal"
+}
