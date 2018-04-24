@@ -1,11 +1,12 @@
-visiting
+private-visiting
 visitTestCase: aTestCase
-		"1. Reset tracers flags."
-		tracers do: [ :tracer | tracer unmark ].
-		"2. Run the test."
-		aTestCase run.
-		"3. If test does not call an assertion method at run time
+	| compiledMethod |
+	"1. Reset tracers flags."
+	tracers do: [ :tracer | tracer unmark ].
+	"2. Run the test."
+	aTestCase run.
+	"3. If test does not call an assertion method at run time
 		    but has a reference to one of them, add it to results."
-		((tracers noneSatisfy: [ :tracer | tracer hasRun ])
-			and: [ (aTestCase class >> aTestCase selector) isStaticallyCallingOneOfTheAssertMethods ])
-				ifTrue: [ rottenTests add: (aTestCase class >> aTestCase selector) ]
+	compiledMethod := (aTestCase class whichClassIncludesSelector: aTestCase selector) >> aTestCase selector.
+	((tracers noneSatisfy: [ :tracer | tracer hasRun ]) and: [ compiledMethod isStaticallyCallingOneOfTheAssertMethods ])
+		ifTrue: [ rottenTests add: compiledMethod ]
