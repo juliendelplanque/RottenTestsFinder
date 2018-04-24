@@ -1,0 +1,16 @@
+{
+	"commentStamp" : "",
+	"super" : "ComposableModel",
+	"category" : "RottenTestsFinder-Spec",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"packagesList",
+		"classesList",
+		"resultsList",
+		"startButton"
+	],
+	"name" : "RTFBrowser",
+	"type" : "normal"
+}
