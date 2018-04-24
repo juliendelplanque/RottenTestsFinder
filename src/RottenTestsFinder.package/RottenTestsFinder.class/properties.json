@@ -6,9 +6,9 @@
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [
-		"testCase",
 		"tracers",
-		"rottenTests"
+		"rottenTests",
+		"visitableObject"
 	],
 	"name" : "RottenTestsFinder",
 	"type" : "normal"

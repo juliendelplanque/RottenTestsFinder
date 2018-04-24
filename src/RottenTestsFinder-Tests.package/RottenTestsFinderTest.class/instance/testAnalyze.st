@@ -1,7 +1,7 @@
 tests-analyzing
 testAnalyze
 	| rottenTestsFound |
-	rottenTestsFound := RottenTestsFinder analyzeCase: RTFFakeTestClass.
+	rottenTestsFound := RottenTestsFinder analyze: RTFFakeTestClass suite.
 	
 	self
 		assert: rottenTestsFound size equals: 1;
