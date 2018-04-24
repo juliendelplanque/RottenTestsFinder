@@ -1,6 +1,7 @@
 analyzing
 analyze
-	self
-		installMethodTracers;
-		runTests;
-		uninstallMethodTracers
+	[ 
+		self
+			installMethodTracers;
+			runTests
+	] ensure: [ self uninstallMethodTracers ]
