@@ -1,5 +1,3 @@
-allBehaviors := ((Smalltalk globals values select: [ :each | each isClassOrTrait ] ) flatCollect: [ :each | { each. each classSide } ]).
+I allow to trace the fact that a method was called or not during execution.
 
-MethodTracer installOn: (allMethods shuffled).
-MethodTracer uninstall.
-(MethodTracer wrappers select: [ :each | each hasRun ]) size.
+I am used to check if a test calls one of the assert methods during its execution.
