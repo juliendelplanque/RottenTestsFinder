@@ -6,4 +6,5 @@ startAnalysis
 		suite addTests: s tests ].
 	
 	self resultsList
-		items: (RottenTestsFinder analyze: suite)
+		items: (RottenTestsFinder analyze: suite);
+		resetSelection
