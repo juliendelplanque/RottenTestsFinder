@@ -8,6 +8,9 @@ defaultSpec
 					row
 						add: #packagesList;
 						add: #classesList;
-						add: #resultsList ];
+						newColumn: [ :resultsColumn |
+							resultsColumn
+								add: #resultsList;
+								add: #browseButton height: self buttonHeight ] ];
 				newRow: #startButton height: self buttonHeight ];
 		yourself

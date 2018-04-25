@@ -1,6 +1,6 @@
 initialization
 initializeWidgets
-	packagesList := self newList.
+	packagesList :=  self instantiate: FastTableModel.
 	packagesList
 		items: (RPackage organizer packages select: [ :p |
 			p classes anySatisfy: [ :c | c allSuperclasses includes: TestCase ] ]);
@@ -8,7 +8,7 @@ initializeWidgets
 		displayBlock: [ :package | package name ];
 		beMultipleSelection.
 		
-	classesList := self newList.
+	classesList :=  self instantiate: FastTableModel.
 	
 	classesList
 		beMultipleSelection.
@@ -19,14 +19,22 @@ initializeWidgets
 				classesList items: (self packagesSelected collect: [ :p | p classes select: [ :c | c allSuperclasses includes: TestCase ] ]) flattened ].
 			
 		
-	resultsList := self newList.
+	resultsList := self instantiate: FastTableModel.
 	
 	resultsList
 		displayBlock: [ :method |
-			method printString ].
+			method printString ];
+		doubleClickAction: [ 
+			self browseSelectedTest ].
 	
 	startButton := self newButton.
 	
 	startButton
 		label: 'Start analysis' translated;
-		action: [ self startAnalysis ]
+		action: [ self startAnalysis ].
+	
+	browseButton := self newButton.
+	
+	browseButton
+		label: 'Browse test' translated;
+		action: [ self browseSelectedTest ]

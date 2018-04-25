@@ -9,7 +9,8 @@
 		"packagesList",
 		"classesList",
 		"resultsList",
-		"startButton"
+		"startButton",
+		"browseButton"
 	],
 	"name" : "RTFBrowser",
 	"type" : "normal"
