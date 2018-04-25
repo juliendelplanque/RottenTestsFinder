@@ -7,8 +7,11 @@
 	"classvars" : [ ],
 	"instvars" : [
 		"packagesList",
+		"packagesListLabel",
 		"classesList",
+		"classesListLabel",
 		"resultsList",
+		"resultsListLabel",
 		"startButton",
 		"browseButton"
 	],
