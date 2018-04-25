@@ -23,16 +23,17 @@ initializeWidgets
 	packagesList whenSelectionChanged: [ 
 		self whenPackagesSelectionChanged: self packagesSelected ].
 			
-	resultsListLabel := self newLabel
-									label: 'Rotten tests:';
-									yourself.
+	resultsListLabel := self newLabel.
+	self updateResultsListLabel.
+	
 	resultsList := self instantiate: FastTableModel.
 	
 	resultsList
 		displayBlock: [ :method |
 			method printString ];
 		doubleClickAction: [ 
-			self browseSelectedTest ].
+			self browseSelectedTest ];
+		sortingBlock: [ :a :b | a name < b name ].
 	
 	startButton := self newButton.
 	

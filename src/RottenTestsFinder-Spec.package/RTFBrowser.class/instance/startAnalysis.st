@@ -7,4 +7,6 @@ startAnalysis
 	
 	self resultsList
 		items: (RottenTestsFinder analyze: suite);
-		resetSelection
+		resetSelection.
+		
+	self updateResultsListLabel
