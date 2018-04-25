@@ -1,3 +1,3 @@
 accessing
 packagesSelected
-	^ self packagesList selectedItems
+	^ self packagesList ifNil: [ #() ] ifNotNil: #selectedItems

@@ -1,8 +1,8 @@
 initialization
 initializeWidgets
-	packagesListLabel := self newLabel
-									label: 'Packages:';
-									yourself.
+	packagesListLabel := self newLabel.
+	self updatePackagesListLabel.
+	
 	packagesList :=  self instantiate: FastTableModel.
 	packagesList
 		items: (RPackage organizer packages select: [ :p |
@@ -11,13 +11,14 @@ initializeWidgets
 		displayBlock: [ :package | package name ];
 		beMultipleSelection.
 	
-	classesListLabel := self newLabel
-									label: 'Test cases:';
-									yourself.
+	classesListLabel := self newLabel.
+	self updateClassesListLabel.
+	
 	classesList :=  self instantiate: FastTableModel.
 	
 	classesList
 		sortingBlock: [ :a :b | a name < b name ];
+		whenSelectionChanged: [ self updateClassesListLabel ];
 		beMultipleSelection.
 	
 	packagesList whenSelectionChanged: [ 

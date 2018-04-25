@@ -1,3 +1,3 @@
 accessing
 classesSelected
-	^ self classesList selectedItems
+	^ self classesList ifNil: [ #() ] ifNotNil: #selectedItems
