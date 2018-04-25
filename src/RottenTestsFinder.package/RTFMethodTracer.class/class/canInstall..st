@@ -1,4 +1,4 @@
-instance creation
+testing
 canInstall: aMethod
 
 		| classBlackList blackList |
