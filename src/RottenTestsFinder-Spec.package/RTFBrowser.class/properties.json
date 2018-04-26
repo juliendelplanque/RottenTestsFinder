@@ -13,7 +13,8 @@
 		"resultsList",
 		"resultsListLabel",
 		"startButton",
-		"browseButton"
+		"browseButton",
+		"toolbar"
 	],
 	"name" : "RTFBrowser",
 	"type" : "normal"

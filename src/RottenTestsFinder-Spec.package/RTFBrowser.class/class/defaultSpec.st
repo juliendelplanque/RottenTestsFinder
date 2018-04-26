@@ -4,6 +4,7 @@ defaultSpec
 	^ SpecLayout composed
 		newColumn: [ :mainCol | 
 			mainCol
+				newRow: #toolbar height: self toolbarHeight;
 				newRow: [ :row |
 					row
 						newColumn: [ :packagesColumn |

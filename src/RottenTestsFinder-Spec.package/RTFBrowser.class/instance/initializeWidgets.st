@@ -51,4 +51,6 @@ initializeWidgets
 	browseButton
 		label: 'Browse test' translated;
 		help: 'Browse the rotten test selected in the results list.';
-		action: [ self browseSelectedTest ]
+		action: [ self browseSelectedTest ].
+		
+	self initializeToolbar
