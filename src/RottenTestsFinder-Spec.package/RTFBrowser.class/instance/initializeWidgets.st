@@ -2,6 +2,7 @@ initialization
 initializeWidgets
 	packagesListLabel := self newLabel.
 	self updatePackagesListLabel.
+	packagesListLabel help: 'Select the packages to analyze. Cmd+A or Ctrl+A to select all packages.'.
 	
 	packagesList :=  self instantiate: FastTableModel.
 	packagesList
@@ -13,6 +14,7 @@ initializeWidgets
 	
 	classesListLabel := self newLabel.
 	self updateClassesListLabel.
+	classesListLabel help: 'Select the classes to analyze. Cmd+A or Ctrl+A to select all classes.'.
 	
 	classesList :=  self instantiate: FastTableModel.
 	
@@ -26,6 +28,7 @@ initializeWidgets
 			
 	resultsListLabel := self newLabel.
 	self updateResultsListLabel.
+	resultsListLabel help: 'The rotten tests found during latest analysis. Double click on a test to browse it in the class browser.'.
 	
 	resultsList := self instantiate: FastTableModel.
 	
@@ -40,10 +43,12 @@ initializeWidgets
 	
 	startButton
 		label: 'Start analysis' translated;
+		help: 'Run the analysis to find rotten tests.';
 		action: [ self startAnalysis ].
 	
 	browseButton := self newButton.
 	
 	browseButton
 		label: 'Browse test' translated;
+		help: 'Browse the rotten test selected in the results list.';
 		action: [ self browseSelectedTest ]
