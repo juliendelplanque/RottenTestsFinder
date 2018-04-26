@@ -5,4 +5,4 @@ updateClassesListLabel
 			s
 				<< 'Test cases (';
 				<< (self classesSelected size);
-				<< 'selected):' ])
+				<< ' selected):' ])
