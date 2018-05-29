@@ -1,0 +1,13 @@
+{
+	"commentStamp" : "JulienDelplanque 5/29/2018 17:18",
+	"super" : "Notification",
+	"category" : "RottenTestsFinder",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"compiledMethod"
+	],
+	"name" : "RTFTestAnalysed",
+	"type" : "normal"
+}

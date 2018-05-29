@@ -1,0 +1,1 @@
+I am the notification signaled once a test has been checked by the RottenTestsFinder.

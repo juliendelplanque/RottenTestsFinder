@@ -11,7 +11,11 @@ visitTestCase: aTestCase
 	
 	"If class is abstract test, do not add it to results."
 	compiledMethod methodClass isAbstract
-		ifTrue: [ ^ self ].
+		ifTrue: [ 
+			RTFTestAnalysed signalTest: compiledMethod.
+			^ self ].
 	
 	((tracers noneSatisfy: [ :tracer | tracer hasRun ]) and: [ compiledMethod isStaticallyCallingOneOfTheAssertMethods ])
-		ifTrue: [ rottenTests addCompiledMethod: compiledMethod ]
+		ifTrue: [ rottenTests addCompiledMethod: compiledMethod ].
+	
+	RTFTestAnalysed signalTest: compiledMethod
