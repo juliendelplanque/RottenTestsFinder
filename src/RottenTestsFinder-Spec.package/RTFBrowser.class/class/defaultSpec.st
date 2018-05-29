@@ -11,10 +11,12 @@ defaultSpec
 							packagesColumn
 								add: #packagesListLabel height: self labelHeight;
 								add: #packagesList ];
+						addSplitter;
 						newColumn: [ :classesColumn |
 							 classesColumn
 								add: #classesListLabel height: self labelHeight;
 								add: #classesList ];
+						addSplitter;
 						newColumn: [ :resultsColumn |
 							resultsColumn
 								add: #resultsListLabel height: self labelHeight;
