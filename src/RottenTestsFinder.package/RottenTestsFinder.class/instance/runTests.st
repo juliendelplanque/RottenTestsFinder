@@ -1,5 +1,5 @@
 private
 runTests
-	rottenTests := OrderedCollection new.
+	rottenTests := RottenTestsSet new.
 	self visitableObject
 		acceptRottenTestsFinder: self

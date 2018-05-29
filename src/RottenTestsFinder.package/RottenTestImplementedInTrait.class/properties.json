@@ -1,0 +1,13 @@
+{
+	"commentStamp" : "JulienDelplanque 5/26/2018 18:25",
+	"super" : "RottenTest",
+	"category" : "RottenTestsFinder",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"traitUsersInWhichTestIsRotten"
+	],
+	"name" : "RottenTestImplementedInTrait",
+	"type" : "normal"
+}

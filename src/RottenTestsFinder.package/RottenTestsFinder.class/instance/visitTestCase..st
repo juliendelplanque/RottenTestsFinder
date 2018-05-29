@@ -14,4 +14,4 @@ visitTestCase: aTestCase
 		ifTrue: [ ^ self ].
 	
 	((tracers noneSatisfy: [ :tracer | tracer hasRun ]) and: [ compiledMethod isStaticallyCallingOneOfTheAssertMethods ])
-		ifTrue: [ rottenTests add: compiledMethod ]
+		ifTrue: [ rottenTests addCompiledMethod: compiledMethod ]

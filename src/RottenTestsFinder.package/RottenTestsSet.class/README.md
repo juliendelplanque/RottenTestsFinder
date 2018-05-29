@@ -1,0 +1,1 @@
+I am the datastructure holding rotten tests found during an analysis.
