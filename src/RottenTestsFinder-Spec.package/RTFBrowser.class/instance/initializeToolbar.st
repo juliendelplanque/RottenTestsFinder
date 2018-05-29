@@ -7,10 +7,5 @@ initializeToolbar
 					item
 						name: 'Help';
 						icon: (self iconNamed: #glamorousHelp);
-						action: [ 
-							TextModel new
-								enabled: false;
-								title: 'Help';
-								text: self helpText;
-								openWithSpec ] ] ].
+						action: [ self openHelp ] ] ].
 	toolbar applyTo: self.
