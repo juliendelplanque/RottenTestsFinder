@@ -33,11 +33,12 @@ initializeWidgets
 	resultsList := self instantiate: FastTableModel.
 	
 	resultsList
-		displayBlock: [ :method |
-			method printString ];
+		displayBlock: [ :rottenTest |
+			rottenTest rtfBrowserName ];
 		doubleClickAction: [ 
 			self browseSelectedTest ];
-		sortingBlock: [ :a :b | a name < b name ].
+		sortingBlock: [ :a :b | a rtfBrowserName < b rtfBrowserName ];
+		menu: [ :menu | self menuForSelectedResult: menu. menu ].
 	
 	startButton := self newButton.
 	

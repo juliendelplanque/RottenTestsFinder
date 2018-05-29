@@ -6,7 +6,7 @@ startAnalysis
 		suite addTests: s tests ].
 	
 	self resultsList
-		items: (RottenTestsFinder analyze: suite);
+		items: (RottenTestsFinder analyze: suite) rottenTests;
 		resetSelection.
 		
 	self updateResultsListLabel
