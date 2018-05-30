@@ -3,6 +3,7 @@ startAnalysis
 	| suite |
 	[
 		self lock.
+		self updateStatus: ('Analysis started ({1}).' format: { self dateAndTimeString }).
 		suite := TestSuite new.
 		self classesSelected collect: #suite thenDo: [ :s |
 			suite addTests: s tests ].
@@ -17,4 +18,5 @@ startAnalysis
 				notif resume ] ]. 
 		
 		self updateResultsListLabel.
+		self updateStatus: ('Analysis finished ({1}).' format: { self dateAndTimeString }).
 	] ensure: [ self unlock ]

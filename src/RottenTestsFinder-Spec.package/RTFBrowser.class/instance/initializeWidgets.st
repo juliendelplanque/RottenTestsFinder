@@ -54,4 +54,6 @@ initializeWidgets
 		help: 'Browse the rotten test selected in the results list.';
 		action: [ self browseSelectedTest ].
 		
-	self initializeToolbar
+	self initializeToolbar.
+	
+	statusLabel := self newLabel.

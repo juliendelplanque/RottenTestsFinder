@@ -14,7 +14,8 @@
 		"resultsListLabel",
 		"startButton",
 		"browseButton",
-		"toolbar"
+		"toolbar",
+		"statusLabel"
 	],
 	"name" : "RTFBrowser",
 	"type" : "normal"

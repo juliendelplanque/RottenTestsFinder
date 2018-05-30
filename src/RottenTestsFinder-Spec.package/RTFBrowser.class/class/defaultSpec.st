@@ -22,5 +22,6 @@ defaultSpec
 								add: #resultsListLabel height: self labelHeight;
 								add: #resultsList;
 								add: #browseButton height: self buttonHeight ] ];
-				newRow: #startButton height: self buttonHeight ];
+				newRow: #startButton height: self buttonHeight;
+				newRow: #statusLabel height: self labelHeight ];
 		yourself
