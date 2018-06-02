@@ -1,9 +1,5 @@
 {
-	"commentStamp" : "JulienDelplanque 4/24/2018 15:30",
-	"super" : "Object",
-	"category" : "RottenTestsFinder",
-	"classinstvars" : [ ],
-	"pools" : [ ],
+	"classtraitcomposition" : "TSUnitVisitor classTrait",
 	"classvars" : [ ],
 	"instvars" : [
 		"tracers",
@@ -11,5 +7,11 @@
 		"visitableObject"
 	],
 	"name" : "RottenTestsFinder",
-	"type" : "normal"
+	"commentStamp" : "JulienDelplanque 4/24/2018 15:30",
+	"super" : "Object",
+	"traitcomposition" : "TSUnitVisitor",
+	"type" : "normal",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"category" : "RottenTestsFinder"
 }

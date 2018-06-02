@@ -1,4 +1,0 @@
-private-visiting
-visitTestCaseClass: aTestCaseClass
-	aTestCaseClass buildSuiteFromLocalSelectors
-		acceptRottenTestsFinder: self
