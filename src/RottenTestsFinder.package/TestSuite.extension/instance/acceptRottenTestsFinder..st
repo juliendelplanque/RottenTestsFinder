@@ -1,3 +1,0 @@
-*RottenTestsFinder
-acceptRottenTestsFinder: aRottenTestsFinder
-	aRottenTestsFinder visitTestSuite: self
