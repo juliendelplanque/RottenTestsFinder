@@ -25,7 +25,10 @@ visitTestCase: aTestCase
 		ifTrue: [ rottenTests addCompiledMethod: compiledMethod ]
 		ifFalse: [ 
 			((tracers noneSatisfy: [ :tracer | tracer hasRun ]) and: [ helperMethodsTracers anySatisfy: [ :tracer | tracer hasRun ] ])
-				ifTrue: [ rottenTests addCompiledMethod: compiledMethod ] ].
+				ifTrue: [ 
+					rottenTests add: (RottenTestHelper new
+												compiledMethod: compiledMethod;
+												testHelperCompiledMethods: (helperMethodsTracers select: [ :tracer | tracer hasRun ] thenCollect: [ :tracer | tracer method ])) ] ].
 	
 	"4. Uninstall tracers on helper methods and clean the list."
 	helperMethodsTracers do: [ :tracer | tracer uninstall ].
