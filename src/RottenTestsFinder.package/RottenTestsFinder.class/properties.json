@@ -3,6 +3,7 @@
 	"classvars" : [ ],
 	"instvars" : [
 		"tracers",
+		"helperMethodsTracers",
 		"rottenTests",
 		"visitableObject"
 	],

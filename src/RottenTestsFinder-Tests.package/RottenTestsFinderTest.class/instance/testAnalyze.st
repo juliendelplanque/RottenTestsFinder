@@ -4,5 +4,5 @@ testAnalyze
 	rottenTestsFound := RottenTestsFinder analyze: RTFFakeTestClass suite.
 	
 	self
-		assert: rottenTestsFound rottenTests size equals: 1;
-		assert: rottenTestsFound rottenTests anyOne compiledMethod equals: (RTFFakeTestClass >> #testWithoutAssertionRun)
+		assert: rottenTestsFound rottenTests size equals: 2;
+		assertCollection: (rottenTestsFound rottenTests collect: #compiledMethod) hasSameElements: { RTFFakeTestClass >> #testWithoutAssertionRun . RTFFakeTestClass >> #testWithNoAssertionInWrapperRun }

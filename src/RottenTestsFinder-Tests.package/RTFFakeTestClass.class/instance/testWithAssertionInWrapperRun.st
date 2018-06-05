@@ -1,0 +1,3 @@
+tests
+testWithAssertionInWrapperRun
+	self assertWrapper

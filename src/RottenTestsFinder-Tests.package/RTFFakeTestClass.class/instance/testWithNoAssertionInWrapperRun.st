@@ -1,0 +1,3 @@
+tests
+testWithNoAssertionInWrapperRun
+	self notAssertWrapper
