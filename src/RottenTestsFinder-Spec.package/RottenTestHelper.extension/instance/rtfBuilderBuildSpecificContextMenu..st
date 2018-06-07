@@ -1,5 +1,5 @@
 *RottenTestsFinder-Spec
-rtfBuilderBuildContextMenu: menu
+rtfBuilderBuildSpecificContextMenu: menu
 	menu
 		add: 'Browse test' target: self selector: #rtfBrowserBrowse;
 		addLine.

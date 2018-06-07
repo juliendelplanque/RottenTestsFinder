@@ -1,4 +1,10 @@
 *RottenTestsFinder-Spec
 rtfBuilderBuildContextMenu: menu
+	self rtfBuilderBuildSpecificContextMenu: menu.
+	
 	menu
-		add: 'Browse test' target: self selector: #rtfBrowserBrowse
+		addLine;
+		add: 'Copy name into clipboard'
+		target: Clipboard default
+		selector: #clipboardText:
+		argument: self compiledMethod printString.
