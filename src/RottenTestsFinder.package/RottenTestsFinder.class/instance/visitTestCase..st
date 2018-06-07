@@ -1,37 +1,28 @@
 private-visiting
 visitTestCase: aTestCase
-	| compiledMethod testHelperMethods|
+	| compiledMethod |
 	compiledMethod := (aTestCase class whichClassIncludesSelector: aTestCase selector) >> aTestCase selector.
-	[
-	"0. Install tracers on non-test methods calling an assert-like method."
-	testHelperMethods := compiledMethod methodClass testHelperMethods.
-	helperMethodsTracers := testHelperMethods collect: [ :method |
-		RTFMethodTracer on: method ].
-	helperMethodsTracers do:  [:tracer | tracer install ].
-	"1. Reset tracers flags."
-	tracers do: [ :tracer | tracer unmark ].
-	helperMethodsTracers do: [ :tracer | tracer unmark ].
-	"2. Run the test."
-	aTestCase run.
-	"3. If test does not call an assertion method at run time
-		    but has a reference to one of them, add it to results."
+	self
+		withTracersOnHelperMethodsOf: compiledMethod methodClass
+		do: [ :helperMethodsTracers |
+			"1. Reset tracers flags."
+			tracers do: [ :tracer | tracer unmark ].
+			helperMethodsTracers do: [ :tracer | tracer unmark ].
+			"2. Run the test."
+			aTestCase run.
 	
-	"If class is abstract test, do not add it to results."
-	compiledMethod methodClass isAbstract
-		ifTrue: [ 
-			RTFTestAnalysed signalTest: compiledMethod.
-			^ self ].
-	
-	((tracers noneSatisfy: [ :tracer | tracer hasRun ]) and: [ compiledMethod isStaticallyCallingOneOfTheAssertMethods ])
-		ifTrue: [ rottenTests addCompiledMethod: compiledMethod ]
-		ifFalse: [ 
-			((tracers noneSatisfy: [ :tracer | tracer hasRun ]) and: [ helperMethodsTracers anySatisfy: [ :tracer | tracer hasRun ] ])
+			"If class is abstract test, do not add it to results."
+			compiledMethod methodClass isAbstract
 				ifTrue: [ 
-					rottenTests add: (RottenTestHelper new
-												compiledMethod: compiledMethod;
-												testHelperCompiledMethods: (helperMethodsTracers select: [ :tracer | tracer hasRun ] thenCollect: [ :tracer | tracer method ])) ] ].
-	RTFTestAnalysed signalTest: compiledMethod
-	] ensure: [ 
-	"4. Uninstall tracers on helper methods and clean the list."
-	helperMethodsTracers do: [ :tracer | tracer uninstall ].
-	helperMethodsTracers := #() ]
+					RTFTestAnalysed signalTest: compiledMethod.
+					^ self ].
+			"3. If test does not call an assertion method at run time
+		    but has a reference to one of them, add it to results."
+			(self assertPrimitivesNotRunAndMethodStaticallyCallingOneOfTheAssertMethods: compiledMethod)
+				ifTrue: [ rottenTests addCompiledMethod: compiledMethod ]
+				ifFalse: [ 
+					(self assertPrimitivesNotRunAndHelperMethodsNotRun: helperMethodsTracers)
+						ifTrue: [ |testHelperCompiledMethodsRun|
+							testHelperCompiledMethodsRun := helperMethodsTracers select: [ :tracer | tracer hasRun ] thenCollect: [ :tracer | tracer method ].
+							rottenTests add: (RottenTestHelper compiledMethod: compiledMethod testHelperCompiledMethods: testHelperCompiledMethodsRun) ] ].
+			RTFTestAnalysed signalTest: compiledMethod ]
