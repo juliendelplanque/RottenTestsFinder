@@ -5,11 +5,16 @@ visitTestCase: aTestCase
 	self
 		withTracersOnHelperMethodsOf: compiledMethod methodClass
 		do: [ :helperMethodsTracers |
+			|testResult|
 			"1. Reset tracers flags."
 			tracers do: [ :tracer | tracer unmark ].
 			helperMethodsTracers do: [ :tracer | tracer unmark ].
 			"2. Run the test."
-			aTestCase run.
+			aTestCase run hasPassed
+				ifFalse: [ "If the test is not green, no need to continue analysis."
+					RTFTestAnalysed signalTest: compiledMethod.
+					^ self ].
+			
 	
 			"If class is abstract test, do not add it to results."
 			compiledMethod methodClass isAbstract
