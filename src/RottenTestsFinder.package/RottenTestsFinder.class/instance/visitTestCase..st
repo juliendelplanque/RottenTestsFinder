@@ -4,7 +4,7 @@ visitTestCase: aTestCase
 	compiledMethod := (aTestCase class whichClassIncludesSelector: aTestCase selector) >> aTestCase selector.
 	
 	"0. Install tracers on non-test methods calling an assert-like method."
-	testHelperMethods := compiledMethod origin testHelperMethods.
+	testHelperMethods := compiledMethod methodClass testHelperMethods.
 	helperMethodsTracers := testHelperMethods collect: [ :method |
 		RTFMethodTracer on: method ].
 	helperMethodsTracers do:  [:tracer | tracer install ].
