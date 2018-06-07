@@ -2,7 +2,7 @@ private-visiting
 visitTestCase: aTestCase
 	| compiledMethod testHelperMethods|
 	compiledMethod := (aTestCase class whichClassIncludesSelector: aTestCase selector) >> aTestCase selector.
-	
+	[
 	"0. Install tracers on non-test methods calling an assert-like method."
 	testHelperMethods := compiledMethod methodClass testHelperMethods.
 	helperMethodsTracers := testHelperMethods collect: [ :method |
@@ -10,6 +10,7 @@ visitTestCase: aTestCase
 	helperMethodsTracers do:  [:tracer | tracer install ].
 	"1. Reset tracers flags."
 	tracers do: [ :tracer | tracer unmark ].
+	helperMethodsTracers do: [ :tracer | tracer unmark ].
 	"2. Run the test."
 	aTestCase run.
 	"3. If test does not call an assertion method at run time
@@ -29,9 +30,8 @@ visitTestCase: aTestCase
 					rottenTests add: (RottenTestHelper new
 												compiledMethod: compiledMethod;
 												testHelperCompiledMethods: (helperMethodsTracers select: [ :tracer | tracer hasRun ] thenCollect: [ :tracer | tracer method ])) ] ].
-	
+	RTFTestAnalysed signalTest: compiledMethod
+	] ensure: [ 
 	"4. Uninstall tracers on helper methods and clean the list."
 	helperMethodsTracers do: [ :tracer | tracer uninstall ].
-	helperMethodsTracers := #().
-	
-	RTFTestAnalysed signalTest: compiledMethod
+	helperMethodsTracers := #() ]
