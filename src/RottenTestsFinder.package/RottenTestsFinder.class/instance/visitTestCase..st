@@ -1,4 +1,4 @@
-private-visiting
+visiting
 visitTestCase: aTestCase
 	| compiledMethod |
 	compiledMethod := (aTestCase class whichClassIncludesSelector: aTestCase selector) >> aTestCase selector.
