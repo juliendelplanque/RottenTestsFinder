@@ -5,7 +5,6 @@ visitTestCase: aTestCase
 	self
 		withTracersOnHelperMethodsOf: compiledMethod methodClass
 		do: [ :helperMethodsTracers |
-			|testResult|
 			"1. Reset tracers flags."
 			tracers do: [ :tracer | tracer unmark ].
 			helperMethodsTracers do: [ :tracer | tracer unmark ].
