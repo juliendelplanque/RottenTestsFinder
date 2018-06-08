@@ -2,12 +2,11 @@ private-visiting
 visitTestCase: aTestCase
 	| compiledMethod |
 	compiledMethod := (aTestCase class whichClassIncludesSelector: aTestCase selector) >> aTestCase selector.
-	self
-		withTracersOnHelperMethodsOf: compiledMethod methodClass
-		do: [ :helperMethodsTracers |
+	(RTFMethodTracersSet onCompiledMethods: compiledMethod methodClass testHelperMethods)
+		whileTracersAreInstalledDo: [ :methodTracersSet |
 			"1. Reset tracers flags."
 			tracers do: [ :tracer | tracer unmark ].
-			helperMethodsTracers do: [ :tracer | tracer unmark ].
+			methodTracersSet unmarkAll.
 			"2. Run the test."
 			aTestCase run hasPassed
 				ifFalse: [ "If the test is not green, no need to continue analysis."
@@ -25,8 +24,7 @@ visitTestCase: aTestCase
 			(self assertPrimitivesNotRunAndMethodStaticallyCallingOneOfTheAssertMethods: compiledMethod)
 				ifTrue: [ rottenTests addCompiledMethod: compiledMethod ]
 				ifFalse: [ 
-					(self assertPrimitivesNotRunAndHelperMethodsNotRun: helperMethodsTracers)
-						ifTrue: [ |testHelperCompiledMethodsRun|
-							testHelperCompiledMethodsRun := helperMethodsTracers select: [ :tracer | tracer hasRun ] thenCollect: [ :tracer | tracer method ].
-							rottenTests add: (RottenTestHelper compiledMethod: compiledMethod testHelperCompiledMethods: testHelperCompiledMethodsRun) ] ].
+					(self assertPrimitivesNotRunAndHelperMethodsNotRun: methodTracersSet tracers)
+						ifTrue: [ 
+							rottenTests add: (RottenTestHelper compiledMethod: compiledMethod testHelperCompiledMethods: methodTracersSet compiledMethodsForTracersRun) ] ].
 			RTFTestAnalysed signalTest: compiledMethod ]
