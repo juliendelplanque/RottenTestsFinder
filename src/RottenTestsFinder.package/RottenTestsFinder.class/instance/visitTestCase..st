@@ -5,7 +5,7 @@ visitTestCase: aTestCase
 	(RTFMethodTracersSet onCompiledMethods: compiledMethod methodClass testHelperMethods)
 		whileTracersAreInstalledDo: [ :methodTracersSet |
 			"1. Reset tracers flags."
-			tracers do: [ :tracer | tracer unmark ].
+			primitiveAssertionsTracersSet unmarkAll.
 			methodTracersSet unmarkAll.
 			"2. Run the test."
 			aTestCase run hasPassed
@@ -24,7 +24,7 @@ visitTestCase: aTestCase
 			(self assertPrimitivesNotRunAndMethodStaticallyCallingOneOfTheAssertMethods: compiledMethod)
 				ifTrue: [ rottenTests addCompiledMethod: compiledMethod ]
 				ifFalse: [ 
-					(self assertPrimitivesNotRunAndHelperMethodsNotRun: methodTracersSet tracers)
+					(self assertPrimitivesNotRunAndHelperMethodsNotRun: methodTracersSet)
 						ifTrue: [ 
 							rottenTests add: (RottenTestHelper compiledMethod: compiledMethod testHelperCompiledMethods: methodTracersSet compiledMethodsForTracersRun) ] ].
 			RTFTestAnalysed signalTest: compiledMethod ]

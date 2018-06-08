@@ -1,7 +1,4 @@
 analyzing
 analyze
-	[ 
-		self
-			installMethodTracers;
-			runTests
-	] ensure: [ self uninstallMethodTracers ]
+	primitiveAssertionsTracersSet := RTFMethodTracersSet onCompiledMethods: self assertionCompiledMethods.
+	primitiveAssertionsTracersSet whileTracersAreInstalledDo: [ self runTests ]

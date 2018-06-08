@@ -2,5 +2,5 @@ actions
 whileTracersAreInstalledDo: aBlock
 	[ 
 		self installAll.
-		aBlock value: self
+		aBlock cull: self
 	] ensure: [ self uninstallAll ]

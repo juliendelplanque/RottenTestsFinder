@@ -1,3 +1,4 @@
 private-testing
-assertPrimitivesNotRunAndHelperMethodsNotRun: helperMethodsTracers
-	^ (tracers noneSatisfy: [ :tracer | tracer hasRun ]) and: [ helperMethodsTracers anySatisfy: [ :tracer | tracer hasRun ] ]
+assertPrimitivesNotRunAndHelperMethodsNotRun: helperMethodsTracersSet
+	^ primitiveAssertionsTracersSet noTracerHasRun
+		and: [ helperMethodsTracersSet anyTracerHasRun ]

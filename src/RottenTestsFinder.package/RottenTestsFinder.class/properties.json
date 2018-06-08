@@ -2,9 +2,9 @@
 	"classtraitcomposition" : "TSUnitVisitor classTrait",
 	"classvars" : [ ],
 	"instvars" : [
-		"tracers",
 		"rottenTests",
-		"visitableObject"
+		"visitableObject",
+		"primitiveAssertionsTracersSet"
 	],
 	"name" : "RottenTestsFinder",
 	"commentStamp" : "JulienDelplanque 4/24/2018 15:30",
