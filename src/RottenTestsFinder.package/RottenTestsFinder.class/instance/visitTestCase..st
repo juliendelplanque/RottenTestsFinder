@@ -1,7 +1,7 @@
 visiting
 visitTestCase: aTestCase
 	| compiledMethod |
-	compiledMethod := (aTestCase class whichClassIncludesSelector: aTestCase selector) >> aTestCase selector.
+	compiledMethod := aTestCase class lowestCompiledMethodInInheritanceChainNamed: aTestCase selector.
 	(RTFMethodTracersSet onCompiledMethods: compiledMethod methodClass testHelperMethods)
 		whileTracersAreInstalledDo: [ :methodTracersSet |
 			"1. Reset tracers flags."
