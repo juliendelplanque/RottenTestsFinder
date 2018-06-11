@@ -1,0 +1,3 @@
+*RottenTestsFinder
+assertionPrimitiveMethodsCalled
+	^ self messages intersection: RottenTestsFinder assertionSelectors
