@@ -1,0 +1,3 @@
+tests
+testWithHelperHelper
+	self helperHelper

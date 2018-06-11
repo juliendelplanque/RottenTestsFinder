@@ -1,0 +1,15 @@
+{
+	"commentStamp" : "",
+	"super" : "Object",
+	"category" : "RottenTestsFinder",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"selfClass",
+		"selfSentMethods",
+		"considerClassesThat"
+	],
+	"name" : "RTFSelfCallInterpreter",
+	"type" : "normal"
+}
