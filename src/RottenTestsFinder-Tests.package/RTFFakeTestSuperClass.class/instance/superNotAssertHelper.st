@@ -1,3 +1,3 @@
-wrapper
-notAssertWrapper
+wrappers
+superNotAssertHelper
 	false ifTrue: [ self assert: true ]

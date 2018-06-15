@@ -5,7 +5,7 @@ testWithSuperHelper
 	
 	interpreter considerClassesThat: [ :class | class inheritsFrom: TestAsserter ].
 
-	interpreter send: #testWithAssertionInSuperWrapperRun fromClass: RTFFakeTestClass.
+	interpreter send: #testWithAssertionInSuperHelperRun fromClass: RTFFakeTestClass.
 
 	self
-		assertCollection: interpreter selfSentMethods hasSameElements: { RTFFakeTestSuperClass >> #superAssertWrapper }
+		assertCollection: interpreter selfSentMethods hasSameElements: { RTFFakeTestSuperClass >> #superAssertHelper }

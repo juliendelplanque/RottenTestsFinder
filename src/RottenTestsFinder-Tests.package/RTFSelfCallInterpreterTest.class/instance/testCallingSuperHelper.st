@@ -8,4 +8,4 @@ testCallingSuperHelper
 	interpreter send: #testCallingSuperHelper fromClass: RTFFakeTestClass.
 
 	self
-		assertCollection: interpreter selfSentMethods hasSameElements: { RTFFakeTestSuperClass >> #superAssertWrapper }
+		assertCollection: interpreter selfSentMethods hasSameElements: { RTFFakeTestSuperClass >> #superAssertHelper }

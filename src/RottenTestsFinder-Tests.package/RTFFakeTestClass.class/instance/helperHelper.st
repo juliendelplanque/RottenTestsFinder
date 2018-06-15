@@ -1,3 +1,3 @@
 wrapper
 helperHelper
-	self assertWrapper
+	self assertHelper

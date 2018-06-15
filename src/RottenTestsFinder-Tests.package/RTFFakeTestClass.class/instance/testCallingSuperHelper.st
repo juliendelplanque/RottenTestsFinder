@@ -1,3 +1,3 @@
 tests
 testCallingSuperHelper
-	super superAssertWrapper
+	super superAssertHelper

@@ -8,4 +8,4 @@ testWithHelperHelper
 	interpreter send: #testWithHelperHelper fromClass: RTFFakeTestClass.
 
 	self
-		assertCollection: interpreter selfSentMethods hasSameElements: { RTFFakeTestClass >> #helperHelper. RTFFakeTestClass >> #assertWrapper }
+		assertCollection: interpreter selfSentMethods hasSameElements: { RTFFakeTestClass >> #helperHelper. RTFFakeTestClass >> #assertHelper }

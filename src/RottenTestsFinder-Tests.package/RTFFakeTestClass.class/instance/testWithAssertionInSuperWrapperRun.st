@@ -1,3 +1,0 @@
-tests
-testWithAssertionInSuperWrapperRun
-	self superAssertWrapper

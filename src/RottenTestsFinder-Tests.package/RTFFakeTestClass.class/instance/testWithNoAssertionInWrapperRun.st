@@ -1,3 +1,0 @@
-tests
-testWithNoAssertionInWrapperRun
-	self notAssertWrapper

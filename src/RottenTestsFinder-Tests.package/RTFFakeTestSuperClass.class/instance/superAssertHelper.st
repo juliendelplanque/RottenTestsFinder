@@ -1,3 +1,3 @@
 wrappers
-superAssertWrapper
+superAssertHelper
 	self assert: true

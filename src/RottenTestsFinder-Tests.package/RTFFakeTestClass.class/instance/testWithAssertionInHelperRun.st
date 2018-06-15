@@ -1,0 +1,3 @@
+tests
+testWithAssertionInHelperRun
+	self assertHelper

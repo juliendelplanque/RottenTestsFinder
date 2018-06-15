@@ -5,4 +5,4 @@ testAnalyze
 	
 	self
 		assert: rottenTestsFound rottenTests size equals: 3;
-		assertCollection: (rottenTestsFound rottenTests collect: #compiledMethod) hasSameElements: { RTFFakeTestClass >> #testWithoutAssertionRun . RTFFakeTestClass >> #testWithNoAssertionInWrapperRun . RTFFakeTestClass >> #testWithNoAssertionInSuperWrapperRun }
+		assertCollection: (rottenTestsFound rottenTests collect: #compiledMethod) hasSameElements: { RTFFakeTestClass >> #testWithoutAssertionRun . RTFFakeTestClass >> #testWithNoAssertionInHelperRun . RTFFakeTestClass >> #testWithNoAssertionInSuperHelperRun }
