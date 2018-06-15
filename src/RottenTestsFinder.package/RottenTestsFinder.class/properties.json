@@ -13,5 +13,5 @@
 	"type" : "normal",
 	"classinstvars" : [ ],
 	"pools" : [ ],
-	"category" : "RottenTestsFinder"
+	"category" : "RottenTestsFinder-Core"
 }

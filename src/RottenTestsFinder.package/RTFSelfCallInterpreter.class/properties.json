@@ -1,7 +1,7 @@
 {
 	"commentStamp" : "",
 	"super" : "Object",
-	"category" : "RottenTestsFinder",
+	"category" : "RottenTestsFinder-SelfInterpreter",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],

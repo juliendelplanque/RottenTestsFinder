@@ -1,7 +1,7 @@
 {
 	"commentStamp" : "JulienDelplanque 4/25/2018 13:20",
 	"super" : "ProtoObject",
-	"category" : "RottenTestsFinder",
+	"category" : "RottenTestsFinder-Tracers",
 	"classinstvars" : [
 		"wrappers"
 	],

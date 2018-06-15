@@ -1,7 +1,7 @@
 {
 	"commentStamp" : "JulienDelplanque 6/5/2018 11:17",
 	"super" : "RottenTest",
-	"category" : "RottenTestsFinder",
+	"category" : "RottenTestsFinder-Results",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
