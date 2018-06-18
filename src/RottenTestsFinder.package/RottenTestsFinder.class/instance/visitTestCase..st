@@ -39,7 +39,7 @@ visitTestCase: aTestCase
 				ifTrue: [ rottenTests addCompiledMethod: compiledMethod ].
 				
 			"Case 11 in the paper:"
-			(containsassertionPrimitive not and: [ containsHelper and: [ assertionPrimitiveExecuted not and: [ helperExecuted not ] ] ])
+			(containsassertionPrimitive not and: [ containsHelper and: [ assertionPrimitiveExecuted not and: [ helperExecuted ] ] ])
 				ifTrue: [ rottenTests add: (RottenTestHelper compiledMethod: compiledMethod testHelperCompiledMethods: helperMethodsTracersSet compiledMethodsForTracersRun) ].
 				
 			"Cases 10 and 12 in the paper:"
