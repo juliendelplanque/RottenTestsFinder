@@ -1,3 +1,7 @@
-as yet unclassified
+tests
 testRow09
-	self fail
+	| rottenTestsFound |
+	rottenTestsFound := RottenTestsFinder analyze: RTFRow09HelperExecutedAssertionExecutedContainsHelperContainsNoAssertion suite.
+	
+	self
+		assert: rottenTestsFound rottenTests isEmpty

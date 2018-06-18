@@ -5,4 +5,4 @@ testRow12
 	
 	self
 		assert: rottenTestsFound rottenTests size equals: 1;
-		assertCollection: rottenTestsFound hasSameElements: { RTFRow12HelperNotExecutedAssertionNotExecutedContainsHelperContainsNoAssertion >> #test }
+		assertCollection: rottenTestsFound rottenCompiledMethods hasSameElements: { RTFRow12HelperNotExecutedAssertionNotExecutedContainsHelperContainsNoAssertion >> #test }

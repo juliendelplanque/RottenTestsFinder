@@ -1,3 +1,6 @@
-as yet unclassified
+tests
 test
-	self fail
+	false
+		ifTrue: [ self goodHelper ].
+		
+	self perform: ('as' , 'sert:') asSymbol with: true

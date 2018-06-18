@@ -1,3 +1,3 @@
-as yet unclassified
+tests
 test
-	self fail
+	self rottenHelper
