@@ -1,4 +1,4 @@
 cleaning
 cleanSubTreesNotLeadingToAssertPrimitive
-	self acceptVisitor: RTFSelfCallTreeCleaner.
+	self acceptVisitor: RTFSelfCallTreeCleaner new.
 	^ self

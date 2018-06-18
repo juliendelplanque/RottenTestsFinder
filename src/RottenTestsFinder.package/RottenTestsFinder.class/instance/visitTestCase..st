@@ -1,8 +1,12 @@
 visiting
 visitTestCase: aTestCase
-	| compiledMethod |
+	| compiledMethod helpers |
 	compiledMethod := aTestCase class lowestCompiledMethodInInheritanceChainNamed: aTestCase selector.
-	(RTFMethodTracersSet onCompiledMethods: compiledMethod methodClass testHelperMethods)
+	helpers := (RTFSelfCallInterpreter new
+					considerClassesThat: [ :class | class inheritsFrom: TestAsserter ];
+					send: compiledMethod selector fromClass: compiledMethod methodClass;
+					rootSelfCall) cleanSubTreesNotLeadingToAssertPrimitive allCompiledMethods.
+	(RTFMethodTracersSet onCompiledMethods: helpers \ self class assertionCompiledMethods)
 		whileTracersAreInstalledDo: [ :helperMethodsTracersSet |
 			|helperExecuted assertionPrimitiveExecuted containsHelper containsassertionPrimitive|
 			"1. Reset tracers flags."
@@ -22,14 +26,31 @@ visitTestCase: aTestCase
 					^ self ].
 			"3. Add method to rotten tests set if classified as rotten."
 			containsassertionPrimitive := compiledMethod assertionPrimitiveMethodsCalled isNotEmpty.
-			containsHelper := (compiledMethod methodsCalledIn: helperMethodsTracersSet selectors) isNotEmpty. "This should be done transitively."
+			containsHelper := helpers isNotEmpty.
 			assertionPrimitiveExecuted := primitiveAssertionsTracersSet anyTracerHasRun.
-			helperExecuted := helperMethodsTracersSet anyTracerHasRun.
-
-			(self assertPrimitivesNotRunAndMethodStaticallyCallingOneOfTheAssertMethods: compiledMethod)
+			helperExecuted := (helperMethodsTracersSet compiledMethodsForTracersRun intersection: helpers) isNotEmpty.
+			
+			"Cases 1-4 in the paper:"
+			(containsassertionPrimitive and: [ containsHelper and: [ (assertionPrimitiveExecuted and: [ helperExecuted ]) not ] ])
+				ifTrue: [ rottenTests addCompiledMethod: compiledMethod ].
+			
+			"Cases 8-9 in the paper:"
+			(containsassertionPrimitive and: [ (containsHelper not) and: [ assertionPrimitiveExecuted not ] ])
+				ifTrue: [ rottenTests addCompiledMethod: compiledMethod ].
+				
+			"Case 11 in the paper:"
+			(containsassertionPrimitive not and: [ containsHelper and: [ assertionPrimitiveExecuted not and: [ helperExecuted not ] ] ])
+				ifTrue: [ rottenTests add: (RottenTestHelper compiledMethod: compiledMethod testHelperCompiledMethods: helperMethodsTracersSet compiledMethodsForTracersRun) ].
+				
+			"Cases 10 and 12 in the paper:"
+			(containsassertionPrimitive not and: [ containsHelper and: [ helperExecuted not ] ])
+				ifTrue: [ rottenTests addCompiledMethod: compiledMethod ].
+			
+			RTFTestAnalysed signalTest: compiledMethod 
+			"(self assertPrimitivesNotRunAndMethodStaticallyCallingOneOfTheAssertMethods: compiledMethod)
 				ifTrue: [ rottenTests addCompiledMethod: compiledMethod ]
 				ifFalse: [ 
 					(self assertPrimitivesNotRunAndHelperMethodsNotRun: helperMethodsTracersSet)
 						ifTrue: [ 
-							rottenTests add: (RottenTestHelper compiledMethod: compiledMethod testHelperCompiledMethods: helperMethodsTracersSet compiledMethodsForTracersRun) ] ].
-			RTFTestAnalysed signalTest: compiledMethod ]
+							rottenTests add: (RottenTestHelper compiledMethod: compiledMethod testHelperCompiledMethods: helperMethodsTracersSet compiledMethodsForTracersRun) ] ]."
+			]
