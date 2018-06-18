@@ -1,3 +1,5 @@
-as yet unclassified
+tests
 test
-	self fail
+	self perform: ('as' , 'sert:') asSymbol with: true.
+	
+	self perform: ('goodHelper' , 'Wrapper') asSymbol

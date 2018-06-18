@@ -1,3 +1,4 @@
-as yet unclassified
+tests
 test
-	self fail
+	false
+		ifTrue: [ self goodHelper ]

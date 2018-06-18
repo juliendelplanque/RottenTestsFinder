@@ -5,7 +5,7 @@ visitTestCase: aTestCase
 	helpers := (RTFSelfCallInterpreter new
 					considerClassesThat: [ :class | class inheritsFrom: TestAsserter ];
 					send: compiledMethod selector fromClass: compiledMethod methodClass;
-					rootSelfCall) cleanSubTreesNotLeadingToAssertPrimitive allCompiledMethods.
+					rootSelfCall) cleanSubTreesNotLeadingToAssertPrimitive allCompiledMethods \ { compiledMethod }.
 	(RTFMethodTracersSet onCompiledMethods: (helpers \ self class assertionCompiledMethods) asArray)
 		whileTracersAreInstalledDo: [ :helperMethodsTracersSet |
 			|helperExecuted assertionPrimitiveExecuted containsHelper containsassertionPrimitive|
@@ -45,12 +45,5 @@ visitTestCase: aTestCase
 			"Cases 10 and 12 in the paper:"
 			(containsassertionPrimitive not and: [ containsHelper and: [ helperExecuted not ] ])
 				ifTrue: [ rottenTests addCompiledMethod: compiledMethod ].
-			
-			RTFTestAnalysed signalTest: compiledMethod 
-			"(self assertPrimitivesNotRunAndMethodStaticallyCallingOneOfTheAssertMethods: compiledMethod)
-				ifTrue: [ rottenTests addCompiledMethod: compiledMethod ]
-				ifFalse: [ 
-					(self assertPrimitivesNotRunAndHelperMethodsNotRun: helperMethodsTracersSet)
-						ifTrue: [ 
-							rottenTests add: (RottenTestHelper compiledMethod: compiledMethod testHelperCompiledMethods: helperMethodsTracersSet compiledMethodsForTracersRun) ] ]."
-			]
+			Halt if: [ compiledMethod selector = #test ].
+			RTFTestAnalysed signalTest: compiledMethod ]

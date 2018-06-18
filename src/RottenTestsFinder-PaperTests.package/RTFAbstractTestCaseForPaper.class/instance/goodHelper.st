@@ -1,3 +1,3 @@
-tests
-test
+helper
+goodHelper
 	self assert: true
