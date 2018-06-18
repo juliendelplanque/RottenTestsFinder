@@ -6,7 +6,8 @@ visitTestCase: aTestCase
 					considerClassesThat: [ :class | class inheritsFrom: TestAsserter ];
 					send: compiledMethod selector fromClass: compiledMethod methodClass;
 					rootSelfCall) cleanSubTreesNotLeadingToAssertPrimitive allCompiledMethods \ { compiledMethod }.
-	(RTFMethodTracersSet onCompiledMethods: (helpers \ self class assertionCompiledMethods) asArray)
+	helpers := (helpers \ self class assertionCompiledMethods) asArray.
+	(RTFMethodTracersSet onCompiledMethods: helpers)
 		whileTracersAreInstalledDo: [ :helperMethodsTracersSet |
 			|helperExecuted assertionPrimitiveExecuted containsHelper containsassertionPrimitive|
 			"1. Reset tracers flags."
@@ -45,5 +46,5 @@ visitTestCase: aTestCase
 			"Cases 10 and 12 in the paper:"
 			(containsassertionPrimitive not and: [ containsHelper and: [ helperExecuted not ] ])
 				ifTrue: [ rottenTests addCompiledMethod: compiledMethod ].
-			
+			"Halt if: [ compiledMethod selector = #test ]."
 			RTFTestAnalysed signalTest: compiledMethod ]

@@ -1,3 +1,6 @@
 tests
 test
-	self fail
+	false
+		ifTrue: [ self assert: true ].
+	
+	self rottenHelper

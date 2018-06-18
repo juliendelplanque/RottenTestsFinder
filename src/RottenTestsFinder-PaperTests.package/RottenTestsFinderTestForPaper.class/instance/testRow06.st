@@ -1,3 +1,7 @@
-as yet unclassified
+tests
 testRow06
-	self fail
+	| rottenTestsFound |
+	rottenTestsFound := RottenTestsFinder analyze: RTFRow06HelperNotExecutedAssertionExecutedContainsNoHelperContainsAssertion suite.
+	
+	self
+		assert: rottenTestsFound rottenTests isEmpty

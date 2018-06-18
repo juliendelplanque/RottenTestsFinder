@@ -1,3 +1,6 @@
-as yet unclassified
+tests
 test
-	self fail
+	false
+		ifTrue: [ self assert: true ].
+		
+	self perform: ('rotten','Helper') asSymbol

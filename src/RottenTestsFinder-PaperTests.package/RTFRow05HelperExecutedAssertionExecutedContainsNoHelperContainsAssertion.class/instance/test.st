@@ -1,3 +1,5 @@
-as yet unclassified
+tests
 test
-	self fail
+	self assert: true.
+	
+	self perform: ('good','Helper') asSymbol
