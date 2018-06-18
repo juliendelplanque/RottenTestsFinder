@@ -1,3 +1,7 @@
 tests
 test
-	self fail
+	self
+		assert: true.
+
+	false
+		ifTrue: [ self goodHelper ]
