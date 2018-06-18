@@ -1,0 +1,3 @@
+testing
+canLeadToAssertPrimitive
+	^ self acceptVisitor: RTFLeadsToAssertPrimitiveCallChecker new

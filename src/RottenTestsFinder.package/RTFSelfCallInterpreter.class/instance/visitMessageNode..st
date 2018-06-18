@@ -1,6 +1,6 @@
 visiting
 visitMessageNode: aRBMessageNode
-	| selfSentMethod |
+	| selfSentMethod callNode |
 	aRBMessageNode receiver acceptVisitor: self.
 	aRBMessageNode arguments do: [ :each | each acceptVisitor: self ].
 	
@@ -10,6 +10,10 @@ visitMessageNode: aRBMessageNode
 	selfSentMethod := (aRBMessageNode receiver isSuper
 		ifTrue: [ selfClass superclass ]
 		ifFalse: [ selfClass ]) lookupSelector: aRBMessageNode selector.
+	
+	callNode := RTFSelfCallNode compiledMethod: selfSentMethod.
+	callStack top addCall: callNode.
+	
 	(considerClassesThat value: selfSentMethod methodClass)
 		ifFalse: [ ^ self ].
 	selfSentMethod isPrimitive
@@ -18,4 +22,8 @@ visitMessageNode: aRBMessageNode
 		ifTrue: [ ^ self ].
 	
 	selfSentMethods add: selfSentMethod.
-	selfSentMethod ast acceptVisitor: self
+	
+	
+	callStack push: callNode.
+	selfSentMethod ast acceptVisitor: self.
+	callStack pop

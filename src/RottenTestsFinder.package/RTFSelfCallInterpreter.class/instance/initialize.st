@@ -1,5 +1,5 @@
-api
+initialization
 initialize
-
 	super initialize.
-	selfSentMethods := OrderedCollection new
+	selfSentMethods := OrderedCollection new.
+	callStack := Stack new

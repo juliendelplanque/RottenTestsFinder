@@ -6,12 +6,9 @@
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [
-		"selfClass",
-		"selfSentMethods",
-		"considerClassesThat",
-		"callStack",
-		"rootSelfCall"
+		"compiledMethod",
+		"subCalls"
 	],
-	"name" : "RTFSelfCallInterpreter",
+	"name" : "RTFSelfCallNode",
 	"type" : "normal"
 }

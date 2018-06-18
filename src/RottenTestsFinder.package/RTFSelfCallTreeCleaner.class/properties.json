@@ -1,17 +1,13 @@
 {
 	"commentStamp" : "",
-	"super" : "Object",
+	"super" : "RTFSelfCallVisitor",
 	"category" : "RottenTestsFinder-SelfInterpreter",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [
-		"selfClass",
-		"selfSentMethods",
-		"considerClassesThat",
-		"callStack",
-		"rootSelfCall"
+		"methodCallsToRemove"
 	],
-	"name" : "RTFSelfCallInterpreter",
+	"name" : "RTFSelfCallTreeCleaner",
 	"type" : "normal"
 }
