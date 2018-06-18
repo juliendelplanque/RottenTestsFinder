@@ -10,9 +10,15 @@ startAnalysis
 	
 		UIManager default informUserDuring: [ :bar |
 			[
-				self resultsList
-					items: (RottenTestsFinder analyze: suite) rottenTests;
-					resetSelection.
+				[	
+					self resultsList
+						items: (RottenTestsFinder analyze: suite) rottenTests;
+						resetSelection.
+				] on: Warning do: [ :warning |
+					Transcript
+						show: warning messageText;
+						cr.
+					warning resume ]
 			] on: RTFTestAnalysed do: [ :notif |
 				bar label: ('Analyzing test: {1}' format: { notif compiledMethod printString }).
 				notif resume ] ]. 
