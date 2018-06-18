@@ -1,5 +1,5 @@
 instance creation
-onCompiledMethods: aCollectionOfCompiledMethods self halt.
+onCompiledMethods: aCollectionOfCompiledMethods
 	^ self new
 		tracers: (aCollectionOfCompiledMethods collect: [ :compiledMethod | RTFMethodTracer on: compiledMethod ]);
 		yourself
