@@ -34,7 +34,7 @@ visitTestCase: aTestCase
 			(containsassertionPrimitive and: [ containsHelper and: [ (assertionPrimitiveExecuted and: [ helperExecuted ]) not ] ])
 				ifTrue: [ rottenTests addCompiledMethod: compiledMethod ].
 			
-			"Cases 8-9 in the paper:"
+			"Cases 7-8 in the paper:"
 			(containsassertionPrimitive and: [ (containsHelper not) and: [ assertionPrimitiveExecuted not ] ])
 				ifTrue: [ rottenTests addCompiledMethod: compiledMethod ].
 				
@@ -45,5 +45,5 @@ visitTestCase: aTestCase
 			"Cases 10 and 12 in the paper:"
 			(containsassertionPrimitive not and: [ containsHelper and: [ helperExecuted not ] ])
 				ifTrue: [ rottenTests addCompiledMethod: compiledMethod ].
-			Halt if: [ compiledMethod selector = #test ].
+			
 			RTFTestAnalysed signalTest: compiledMethod ]

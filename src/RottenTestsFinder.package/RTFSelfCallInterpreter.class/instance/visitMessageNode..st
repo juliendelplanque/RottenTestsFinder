@@ -10,6 +10,9 @@ visitMessageNode: aRBMessageNode
 	selfSentMethod := (aRBMessageNode receiver isSuper
 		ifTrue: [ selfClass superclass ]
 		ifFalse: [ selfClass ]) lookupSelector: aRBMessageNode selector.
+	
+	selfSentMethod class = RTFMethodTracer
+		ifTrue: [ selfSentMethod := selfSentMethod method ].
 		
 	selfSentMethod
 		ifNil: [ 
