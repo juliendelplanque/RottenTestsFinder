@@ -1,0 +1,13 @@
+{
+	"commentStamp" : "",
+	"super" : "RTFSelfCallVisitor",
+	"category" : "RottenTestsFinder-SelfInterpreter",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"compiledMethods"
+	],
+	"name" : "RTFMethodCallsCollector",
+	"type" : "normal"
+}
