@@ -4,7 +4,7 @@ visitTestCase: aTestCase
 	compiledMethod := aTestCase class lowestCompiledMethodInInheritanceChainNamed: aTestCase selector.
 	helpers := (RTFSelfCallInterpreter new
 					considerClassesThat: [ :class | class inheritsFrom: TestAsserter ];
-					send: compiledMethod selector fromClass: compiledMethod methodClass;
+					send: compiledMethod selector fromClass: aTestCase class;
 					rootSelfCall) cleanSubTreesNotLeadingToAssertPrimitive allCompiledMethods \ { compiledMethod }.
 	helpers := (helpers \ self class assertionCompiledMethods) asArray.
 	(RTFMethodTracersSet onCompiledMethods: helpers)
@@ -46,5 +46,5 @@ visitTestCase: aTestCase
 			"Cases 10 and 12 in the paper:"
 			(containsassertionPrimitive not and: [ containsHelper and: [ helperExecuted not ] ])
 				ifTrue: [ rottenTests addCompiledMethod: compiledMethod ].
-			"Halt if: [ compiledMethod selector = #test ]."
+			"Halt if: [ compiledMethod selector = #testAssignmentOfSelf ]."
 			RTFTestAnalysed signalTest: compiledMethod ]
