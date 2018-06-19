@@ -1,6 +1,7 @@
 visiting
 visitTestCase: aTestCase
 	| compiledMethod helpers |
+	testsVisitedCount := testsVisitedCount + 1.
 	compiledMethod := aTestCase class lowestCompiledMethodInInheritanceChainNamed: aTestCase selector.
 	helpers := (RTFSelfCallInterpreter new
 					considerClassesThat: [ :class | class inheritsFrom: TestAsserter ];
@@ -14,6 +15,7 @@ visitTestCase: aTestCase
 			primitiveAssertionsTracersSet unmarkAll.
 			helperMethodsTracersSet unmarkAll.
 			"2. Run the test."
+			testsRunCount := testsRunCount + 1.
 			aTestCase run hasPassed
 				ifFalse: [ "If the test is not green, no need to continue analysis."
 					RTFTestAnalysed signalTest: compiledMethod.

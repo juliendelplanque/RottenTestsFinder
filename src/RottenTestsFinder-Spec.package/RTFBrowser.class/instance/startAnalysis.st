@@ -11,9 +11,12 @@ startAnalysis
 		UIManager default informUserDuring: [ :bar |
 			[
 				[	
+					|results|
+					results := RottenTestsFinder analyze: suite.
 					self resultsList
-						items: (RottenTestsFinder analyze: suite) rottenTests;
+						items: results rottenTests;
 						resetSelection.
+					results inspect.
 				] on: Warning do: [ :warning |
 					Transcript
 						show: warning messageText;

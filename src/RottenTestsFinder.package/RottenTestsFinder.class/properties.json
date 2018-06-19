@@ -4,7 +4,9 @@
 	"instvars" : [
 		"rottenTests",
 		"visitableObject",
-		"primitiveAssertionsTracersSet"
+		"primitiveAssertionsTracersSet",
+		"testsVisitedCount",
+		"testsRunCount"
 	],
 	"name" : "RottenTestsFinder",
 	"commentStamp" : "JulienDelplanque 4/24/2018 15:30",

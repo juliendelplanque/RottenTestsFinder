@@ -1,4 +1,8 @@
 analyzing
 analyze
 	primitiveAssertionsTracersSet := RTFMethodTracersSet onCompiledMethods: self assertionCompiledMethods.
-	primitiveAssertionsTracersSet whileTracersAreInstalledDo: [ self runTests ]
+	primitiveAssertionsTracersSet whileTracersAreInstalledDo: [ self runTests ].
+	
+	self rottenTests
+		testsVisitedCount: testsVisitedCount;
+		testsRunCount: testsRunCount

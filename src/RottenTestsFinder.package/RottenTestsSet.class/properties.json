@@ -6,7 +6,9 @@
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [
-		"rottenTests"
+		"rottenTests",
+		"testsVisitedCount",
+		"testsRunCount"
 	],
 	"name" : "RottenTestsSet",
 	"type" : "normal"
