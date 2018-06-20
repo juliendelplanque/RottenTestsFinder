@@ -16,7 +16,6 @@ startAnalysis
 					self resultsList
 						items: results rottenTests;
 						resetSelection.
-					results inspect.
 				] on: Warning do: [ :warning |
 					Transcript
 						show: warning messageText;
