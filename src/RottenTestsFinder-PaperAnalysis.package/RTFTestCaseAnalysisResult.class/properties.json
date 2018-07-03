@@ -1,0 +1,15 @@
+{
+	"commentStamp" : "",
+	"super" : "Object",
+	"category" : "RottenTestsFinder-PaperAnalysis",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"testCase",
+		"primitivesCalls",
+		"helperCalls"
+	],
+	"name" : "RTFTestCaseAnalysisResult",
+	"type" : "normal"
+}

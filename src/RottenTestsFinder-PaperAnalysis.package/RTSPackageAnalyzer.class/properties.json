@@ -1,0 +1,13 @@
+{
+	"classtraitcomposition" : "TSUnitVisitor classTrait",
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "RTSPackageAnalyzer",
+	"commentStamp" : "",
+	"super" : "Object",
+	"traitcomposition" : "TSUnitVisitor @ {#privateVisitRPackage:->#visitRPackage:. #privateVisitTestCaseClass:->#visitTestCaseClass:}",
+	"type" : "normal",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"category" : "RottenTestsFinder-PaperAnalysis"
+}

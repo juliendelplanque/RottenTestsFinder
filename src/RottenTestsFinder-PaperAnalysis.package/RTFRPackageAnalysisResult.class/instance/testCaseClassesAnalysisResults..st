@@ -1,0 +1,3 @@
+accessing
+testCaseClassesAnalysisResults: anObject
+	testCaseClassesAnalysisResults := anObject

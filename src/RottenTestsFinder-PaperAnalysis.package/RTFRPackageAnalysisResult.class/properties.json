@@ -1,0 +1,13 @@
+{
+	"commentStamp" : "",
+	"super" : "Object",
+	"category" : "RottenTestsFinder-PaperAnalysis",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"testCaseClassesAnalysisResults"
+	],
+	"name" : "RTFRPackageAnalysisResult",
+	"type" : "normal"
+}
