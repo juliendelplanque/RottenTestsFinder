@@ -2,7 +2,7 @@
 	"classtraitcomposition" : "TSUnitVisitor classTrait",
 	"classvars" : [ ],
 	"instvars" : [ ],
-	"name" : "RTSPackageAnalyzer",
+	"name" : "RTFPackageAnalyzer",
 	"commentStamp" : "",
 	"super" : "Object",
 	"traitcomposition" : "TSUnitVisitor @ {#privateVisitRPackage:->#visitRPackage:. #privateVisitTestCaseClass:->#visitTestCaseClass:}",

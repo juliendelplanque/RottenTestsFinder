@@ -5,10 +5,10 @@ visitTestCase: aTestCase
 	"
 	| compiledMethod analysisResult helpers selfCallTree |
 	compiledMethod := aTestCase class lowestCompiledMethodInInheritanceChainNamed: aTestCase selector.
-	selfCallTree := (RTFSelfCallInterpreter new
+	selfCallTree := [ (RTFSelfCallInterpreter new
 							considerClassesThat: [ :class | class inheritsFrom: TestAsserter ];
 							send: compiledMethod selector fromClass: aTestCase class;
-							rootSelfCall) cleanSubTreesNotLeadingToAssertPrimitive.
+							rootSelfCall) cleanSubTreesNotLeadingToAssertPrimitive ] on: Warning do: #resume.
 	helpers := selfCallTree allCompiledMethods \ { compiledMethod }.
 	helpers := (helpers \ RottenTestsFinder assertionCompiledMethods) asArray.
 	analysisResult := RTFTestCaseAnalysisResult new.
