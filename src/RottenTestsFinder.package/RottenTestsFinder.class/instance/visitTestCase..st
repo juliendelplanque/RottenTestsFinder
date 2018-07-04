@@ -1,52 +1,49 @@
 visiting
 visitTestCase: aTestCase
-	| compiledMethod helpers |
+	| compiledMethod helpers primitiveAssertionsMetalinks helpersMetalinks rootCallNode assertionPrimitiveCallSites assertionPrimitiveMetaLinks |
 	testsVisitedCount := testsVisitedCount + 1.
 	compiledMethod := aTestCase class lowestCompiledMethodInInheritanceChainNamed: aTestCase selector.
-	helpers := (RTFSelfCallInterpreter new
-					considerClassesThat: [ :class | class inheritsFrom: TestAsserter ];
-					send: compiledMethod selector fromClass: aTestCase class;
-					rootSelfCall) cleanSubTreesNotLeadingToAssertPrimitive allCompiledMethods \ { compiledMethod }.
-	helpers := (helpers \ self class assertionCompiledMethods) asArray.
-	(RTFMethodTracersSet onCompiledMethods: helpers)
-		whileTracersAreInstalledDo: [ :helperMethodsTracersSet |
-			|helperExecuted assertionPrimitiveExecuted containsHelper containsassertionPrimitive|
-			"1. Reset tracers flags."
-			primitiveAssertionsTracersSet unmarkAll.
-			helperMethodsTracersSet unmarkAll.
-			"2. Run the test."
-			testsRunCount := testsRunCount + 1.
-			aTestCase run hasPassed
-				ifFalse: [ "If the test is not green, no need to continue analysis."
-					RTFTestAnalysed signalTest: compiledMethod.
-					^ self ].
-			
+	rootCallNode := (RTFSelfCallInterpreter new
+							considerClassesThat: [ :class | class inheritsFrom: TestAsserter ];
+							send: compiledMethod selector fromClass: aTestCase class;
+							rootSelfCall) cleanSubTreesNotLeadingToAssertPrimitive.
+	assertionPrimitiveMetaLinks := OrderedCollection new.
+	assertionPrimitiveCallSites := rootCallNode subCalls select: [ :selfCallNode | self class assertionCompiledMethods includes: selfCallNode compiledMethod ].
+							
+	"helpers := rootCallNode allCompiledMethods \ { compiledMethod }.
+	helpers := (helpers \ self class assertionCompiledMethods) asArray."
 	
-			"If class is abstract test, do not add it to results."
-			compiledMethod methodClass isAbstract
-				ifTrue: [ 
-					RTFTestAnalysed signalTest: compiledMethod.
-					^ self ].
-			"3. Add method to rotten tests set if classified as rotten."
-			containsassertionPrimitive := compiledMethod assertionPrimitiveMethodsCalled isNotEmpty.
-			containsHelper := helpers isNotEmpty.
-			assertionPrimitiveExecuted := primitiveAssertionsTracersSet anyTracerHasRun.
-			helperExecuted := (helperMethodsTracersSet compiledMethodsForTracersRun intersection: helpers) isNotEmpty.
-			
-			"Cases 1-4 in the paper:"
-			(containsassertionPrimitive and: [ containsHelper and: [ (assertionPrimitiveExecuted and: [ helperExecuted ]) not ] ])
-				ifTrue: [ rottenTests addCompiledMethod: compiledMethod ].
-			
-			"Cases 7-8 in the paper:"
-			(containsassertionPrimitive and: [ (containsHelper not) and: [ assertionPrimitiveExecuted not ] ])
-				ifTrue: [ rottenTests addCompiledMethod: compiledMethod ].
-				
-			"Case 11 in the paper:"
-			(containsassertionPrimitive not and: [ containsHelper and: [ assertionPrimitiveExecuted not and: [ helperExecuted ] ] ])
-				ifTrue: [ rottenTests add: (RottenTestHelper compiledMethod: compiledMethod testHelperCompiledMethods: helperMethodsTracersSet compiledMethodsForTracersRun) ].
-				
-			"Cases 10 and 12 in the paper:"
-			(containsassertionPrimitive not and: [ containsHelper and: [ helperExecuted not ] ])
-				ifTrue: [ rottenTests addCompiledMethod: compiledMethod ].
-			"Halt if: [ compiledMethod selector = #testAssignmentOfSelf ]."
-			RTFTestAnalysed signalTest: compiledMethod ]
+	"Install Metalinks on assertion primitive call sites."
+	self flag: #TODO.
+	assertionPrimitiveCallSites do: [ :selfCallNode |
+		|metalink|
+		metalink := MetaLink new
+						metaObject: selfCallNode;
+						selector: #hasBeenExecuted:;
+						arguments: #(true);
+						yourself.
+		selfCallNode astNode link: metalink.
+		assertionPrimitiveMetaLinks add: metalink ].
+	
+	"Install Metalinks on helper methods call sites."	
+	self flag: #TODO.
+	Halt if: [ compiledMethod selector = #testWithoutAssertionRun ].
+	
+	"Run the test, only interesting if green, else ignore."
+	aTestCase run hasPassed
+		ifFalse: [ "If the test is not green, no need to continue analysis."
+			RTFTestAnalysed signalTest: compiledMethod.
+			assertionPrimitiveMetaLinks do: #uninstall.	
+			^ self ].
+	
+	self flag: #'Manage expected failures'.
+	
+	"Uninstall Metalinks on assertion primitive call sites."
+	assertionPrimitiveMetaLinks do: #uninstall.	
+
+	"Checks whether test is rotten or not."
+	(assertionPrimitiveCallSites allSatisfy: #hasBeenExecuted)
+		ifTrue: [  ]
+		ifFalse: [ rottenTests addCompiledMethod: compiledMethod ].
+	
+	RTFTestAnalysed signalTest: compiledMethod

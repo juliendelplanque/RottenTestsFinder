@@ -5,6 +5,6 @@ send: aSelector fromClass: aClass
 	selfClass := aClass.
 	method := selfClass lookupSelector: aSelector.
 	
-	callStack push: (RTFSelfCallNode compiledMethod: method).
+	callStack push: (RTFSelfCallRootNode compiledMethod: method).
 	method ast acceptVisitor: self.
 	rootSelfCall := callStack pop

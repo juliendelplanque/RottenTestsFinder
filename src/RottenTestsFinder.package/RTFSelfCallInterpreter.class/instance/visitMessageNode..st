@@ -19,7 +19,7 @@ visitMessageNode: aRBMessageNode
 			Warning signal: ('#{1} can not be found in {2} nor in any super class.' format: { aRBMessageNode selector . selfClass name }).
 			^ self ].
 	
-	callNode := RTFSelfCallNode compiledMethod: selfSentMethod.
+	callNode := RTFSelfCallNode astNode: aRBMessageNode compiledMethod: selfSentMethod.
 	callStack top addCall: callNode.
 	
 	(considerClassesThat value: selfSentMethod methodClass)

@@ -4,7 +4,6 @@
 	"instvars" : [
 		"rottenTests",
 		"visitableObject",
-		"primitiveAssertionsTracersSet",
 		"testsVisitedCount",
 		"testsRunCount"
 	],

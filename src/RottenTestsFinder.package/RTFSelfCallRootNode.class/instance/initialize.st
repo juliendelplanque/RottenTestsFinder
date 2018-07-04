@@ -1,4 +1,4 @@
 initialization
 initialize
 	super initialize.
-	self hasBeenExecuted: false
+	self subCalls: OrderedCollection new

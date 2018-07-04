@@ -1,15 +1,15 @@
 initialization
 setUp
-	tree1 := RTFSelfCallNode new
+	tree1 := RTFSelfCallRootNode new
 				compiledMethod: (RTFFakeTestClass >> #testWithHelperHelper);
 				subCalls: { 
-					RTFSelfCallNode new
+					RTFSelfCallRootNode new
 						compiledMethod: RTFFakeTestClass >> #helperHelper;
 						subCalls: { 
-							RTFSelfCallNode new
+							RTFSelfCallRootNode new
 								compiledMethod: RTFFakeTestClass >> #assertHelper;
 								subCalls: { 
-									RTFSelfCallNode new
+									RTFSelfCallRootNode new
 										compiledMethod: TestAsserter >> #assert:;
 										subCalls: #()
 									};
@@ -18,10 +18,10 @@ setUp
 						yourself
 					};
 				yourself.
-	tree2 := RTFSelfCallNode new
+	tree2 := RTFSelfCallRootNode new
 				compiledMethod: (RTFFakeTestClass >> #testWithNoAssertionInHelperRun);
 				subCalls: { 
-					RTFSelfCallNode new
+					RTFSelfCallRootNode new
 						compiledMethod: RTFFakeTestClass >> #rottenHelper;
 						subCalls: #();
 						yourself

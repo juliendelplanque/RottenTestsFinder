@@ -5,7 +5,7 @@ visitTestCase: aTestCase
 	"
 	| compiledMethod analysisResult helpers selfCallTree |
 	compiledMethod := aTestCase class lowestCompiledMethodInInheritanceChainNamed: aTestCase selector.
-	selfCallTree := [ (RTFSelfCallInterpreter new
+	selfCallTree := [ (SCISelfCallInterpreter new
 							considerClassesThat: [ :class | class inheritsFrom: TestAsserter ];
 							send: compiledMethod selector fromClass: aTestCase class;
 							rootSelfCall) cleanSubTreesNotLeadingToAssertPrimitive ] on: Warning do: #resume.

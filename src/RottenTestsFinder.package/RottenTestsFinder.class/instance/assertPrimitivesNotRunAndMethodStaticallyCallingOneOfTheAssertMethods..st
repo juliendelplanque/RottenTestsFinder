@@ -1,4 +1,0 @@
-private-testing
-assertPrimitivesNotRunAndMethodStaticallyCallingOneOfTheAssertMethods: compiledMethod
-	^ primitiveAssertionsTracersSet noTracerHasRun and: [
-		compiledMethod isStaticallyCallingOneOfTheAssertMethods ]

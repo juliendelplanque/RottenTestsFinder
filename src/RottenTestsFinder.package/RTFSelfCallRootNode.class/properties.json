@@ -1,14 +1,14 @@
 {
 	"commentStamp" : "",
-	"super" : "RTFSelfCallRootNode",
+	"super" : "Object",
 	"category" : "RottenTestsFinder-SelfInterpreter",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [
-		"astNode",
-		"hasBeenExecuted"
+		"compiledMethod",
+		"subCalls"
 	],
-	"name" : "RTFSelfCallNode",
+	"name" : "RTFSelfCallRootNode",
 	"type" : "normal"
 }

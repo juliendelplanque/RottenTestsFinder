@@ -1,23 +1,23 @@
 initialization
 setUp
-	tree := RTFSelfCallNode new
+	tree := RTFSelfCallRootNode new
 				compiledMethod: 'Fake CM';
 				subCalls: { 
-					RTFSelfCallNode new
+					RTFSelfCallRootNode new
 						compiledMethod: 'Fake CM 2';
 						subCalls: { 
-							RTFSelfCallNode new
+							RTFSelfCallRootNode new
 								compiledMethod: 'Fake CM 3';
 								subCalls: { 
-									RTFSelfCallNode new
+									RTFSelfCallRootNode new
 										compiledMethod: TestAsserter >> #assert:;
 										subCalls: #()
 									};
 								yourself.
-							RTFSelfCallNode new
+							RTFSelfCallRootNode new
 								compiledMethod: 'Fake CM 4';
 								subCalls: { 
-									RTFSelfCallNode new
+									RTFSelfCallRootNode new
 										compiledMethod: 'Fake CM 5';
 										subCalls: { };
 										yourself
