@@ -35,6 +35,8 @@ visitTestCase: aTestCase
 		selfCallNode astNode link: metalink.
 		helperMetaLinks add: metalink ].
 	
+	self flag: #TODO. "Install metalinks in helpers source code."
+	
 	"Run the test, only interesting if green, else ignore."
 	aTestCase run hasPassed
 		ifFalse: [ "If the test is not green, no need to continue analysis."
@@ -60,5 +62,7 @@ visitTestCase: aTestCase
 						ifFalse: [ "Test is implemented in super class"
 							self rottenTests add: (RottenTestImplementedInSuperClass compiledMethod: compiledMethod subclassInWhichTestIsRotten: aTestCase class) ] ]
 				ifTrue: [ self rottenTests add: (RottenTestImplementedInTrait compiledMethod: compiledMethod) ] ].
+	
+	self flag: #TODO. "check for helpers as well."
 	
 	RTFTestAnalysed signalTest: compiledMethod
