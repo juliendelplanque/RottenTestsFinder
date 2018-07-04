@@ -54,14 +54,8 @@ visitTestCase: aTestCase
 	"Checks whether test is rotten or not."
 	(assertionPrimitiveCallSites allSatisfy: #hasBeenExecuted)
 		ifFalse: [ 
-			compiledMethod origin isTrait "TODO double dispatch"
-				ifFalse: [ 
-					compiledMethod methodClass = aTestCase class
-						ifTrue: [ 
-							self rottenTests add: (RottenTest compiledMethod: compiledMethod) ]
-						ifFalse: [ "Test is implemented in super class"
-							self rottenTests add: (RottenTestImplementedInSuperClass compiledMethod: compiledMethod subclassInWhichTestIsRotten: aTestCase class) ] ]
-				ifTrue: [ self rottenTests add: (RottenTestImplementedInTrait compiledMethod: compiledMethod) ] ].
+			self rottenTests
+				add: (compiledMethod origin generateRottenTestFromCompiledMethod: compiledMethod testCase: aTestCase) ].
 	
 	self flag: #TODO. "check for helpers as well."
 	
