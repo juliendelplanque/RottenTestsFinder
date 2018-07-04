@@ -1,0 +1,3 @@
+accessing
+subclassesInWhichTestIsRotten: anObject
+	subclassesInWhichTestIsRotten := anObject

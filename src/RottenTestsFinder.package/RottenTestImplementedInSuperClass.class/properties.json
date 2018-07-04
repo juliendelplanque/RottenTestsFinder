@@ -1,0 +1,13 @@
+{
+	"commentStamp" : "",
+	"super" : "RottenTest",
+	"category" : "RottenTestsFinder-Results",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"subclassesInWhichTestIsRotten"
+	],
+	"name" : "RottenTestImplementedInSuperClass",
+	"type" : "normal"
+}
