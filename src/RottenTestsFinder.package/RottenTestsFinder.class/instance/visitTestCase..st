@@ -39,14 +39,12 @@ visitTestCase: aTestCase
 		selfCallNode acceptVisitor: RTFRecursiveMetalinksInstaller new ].
 	
 	"Run the test, only interesting if green, else ignore."
-	aTestCase run hasPassed
+	(aTestCase run hasPassed and: [ aTestCase isExpectedFailure not ])
 		ifFalse: [ "If the test is not green, no need to continue analysis."
 			RTFTestAnalysed signalTest: compiledMethod.
 			assertionPrimitiveMetaLinks do: #uninstall.	
 			helperMetaLinks do: #uninstall.
 			^ self ].
-	
-	self flag: #'Manage expected failures'.
 	
 	"Uninstall Metalinks on call sites."
 	assertionPrimitiveMetaLinks do: #uninstall.	
@@ -63,6 +61,7 @@ visitTestCase: aTestCase
 							yourself) ].
 						
 	"Checks whether there is rotten helpers or not."
+	self flag: #todo.
 	
 	
 	RTFTestAnalysed signalTest: compiledMethod
