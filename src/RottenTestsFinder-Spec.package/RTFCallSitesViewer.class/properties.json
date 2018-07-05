@@ -1,0 +1,14 @@
+{
+	"commentStamp" : "",
+	"super" : "ComposableModel",
+	"category" : "RottenTestsFinder-Spec",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"callSitesList",
+		"sourceCodeTextModel"
+	],
+	"name" : "RTFCallSitesViewer",
+	"type" : "normal"
+}

@@ -10,6 +10,9 @@ rtfBuilderBuildContextMenu: menu
 		argument: self compiledMethod printString.
 		
 	menu
-		add: 'Inspect'
-		target: self
-		selector: #inspect
+		add: 'See rotten call sites'
+		target: [ 
+			RTFCallSitesViewer new
+				onCallSites: self callSites;
+				openWithSpec ]
+		selector: #value
