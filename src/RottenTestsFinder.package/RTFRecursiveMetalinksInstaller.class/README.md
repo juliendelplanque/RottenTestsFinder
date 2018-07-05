@@ -1,0 +1,1 @@
+Same thing as my superclass but recursively to reach all nodes of the tree.

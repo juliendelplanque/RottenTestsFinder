@@ -3,39 +3,40 @@ visitTestCase: aTestCase
 	| compiledMethod rootCallNode assertionPrimitiveCallSites assertionPrimitiveMetaLinks helperMetaLinks helperCallSites |
 	testsVisitedCount := testsVisitedCount + 1.
 	compiledMethod := aTestCase class lowestCompiledMethodInInheritanceChainNamed: aTestCase selector.
-	"Halt if: [ compiledMethod selector = #testWithoutAssertionRun ]."
+	
 	rootCallNode := (RTFSelfCallInterpreter new
 							considerClassesThat: [ :class | class inheritsFrom: TestAsserter ];
 							send: compiledMethod selector fromClass: aTestCase class;
 							rootSelfCall) cleanSubTreesNotLeadingToAssertPrimitive.
-	assertionPrimitiveMetaLinks := OrderedCollection new.
+	
 	assertionPrimitiveCallSites := rootCallNode subCalls select: [ :selfCallNode |
 												self class assertionCompiledMethods includes: selfCallNode compiledMethod ].
-	helperMetaLinks := OrderedCollection new.
 	helperCallSites := rootCallNode subCalls reject: [ :selfCallNode |
 								self class assertionCompiledMethods includes: selfCallNode compiledMethod ].
 	
 	"Install Metalinks on assertion primitive call sites."
-	assertionPrimitiveCallSites do: [ :selfCallNode |
+	assertionPrimitiveMetaLinks := assertionPrimitiveCallSites collect: [ :selfCallNode |
 		|metalink|
 		metalink := MetaLink new
 						metaObject: selfCallNode;
 						selector: #markAsExecuted;
 						yourself.
 		selfCallNode astNode link: metalink.
-		assertionPrimitiveMetaLinks add: metalink ].
+		metalink ].
 	
 	"Install Metalinks on helper methods call sites."	
-	helperCallSites do: [ :selfCallNode |
+	helperMetaLinks := helperCallSites collect: [ :selfCallNode |
 		|metalink|
 		metalink := MetaLink new
 						metaObject: selfCallNode;
 						selector: #markAsExecuted;
 						yourself.
 		selfCallNode astNode link: metalink.
-		helperMetaLinks add: metalink ].
+		metalink ].
 	
-	self flag: #TODO. "Install metalinks in helpers source code."
+	"Install metalinks in helpers source code."
+	helperCallSites do: [ :selfCallNode |
+		selfCallNode acceptVisitor: RTFRecursiveMetalinksInstaller new ].
 	
 	"Run the test, only interesting if green, else ignore."
 	aTestCase run hasPassed
@@ -47,9 +48,11 @@ visitTestCase: aTestCase
 	
 	self flag: #'Manage expected failures'.
 	
-	"Uninstall Metalinks on assertion primitive call sites."
+	"Uninstall Metalinks on call sites."
 	assertionPrimitiveMetaLinks do: #uninstall.	
 	helperMetaLinks do: #uninstall.
+	helperCallSites do: [ :selfCallNode |
+		selfCallNode acceptVisitor: RTFRecursiveMetalinksUninstaller new ].
 
 	"Checks whether test is rotten or not (i.e. is there an assertion primitive or helper call site not executed)."
 	((assertionPrimitiveCallSites allSatisfy: #hasBeenExecuted) and: [ helperCallSites allSatisfy: #hasBeenExecuted ])
@@ -58,5 +61,8 @@ visitTestCase: aTestCase
 				add: ((compiledMethod origin generateRottenTestFromCompiledMethod: compiledMethod testCase: aTestCase)
 							callSites: (assertionPrimitiveCallSites reject: #hasBeenExecuted thenCollect: #astNode),(helperCallSites reject: #hasBeenExecuted thenCollect: #astNode);
 							yourself) ].
+						
+	"Checks whether there is rotten helpers or not."
+	
 	
 	RTFTestAnalysed signalTest: compiledMethod

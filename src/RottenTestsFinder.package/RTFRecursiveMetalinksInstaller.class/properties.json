@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "JulienDelplanque 7/5/2018 11:33",
+	"super" : "RTFMetalinksInstaller",
+	"category" : "RottenTestsFinder-SelfInterpreter",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "RTFRecursiveMetalinksInstaller",
+	"type" : "normal"
+}

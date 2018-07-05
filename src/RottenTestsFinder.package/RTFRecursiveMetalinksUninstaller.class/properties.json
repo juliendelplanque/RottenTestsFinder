@@ -1,15 +1,11 @@
 {
 	"commentStamp" : "",
-	"super" : "RTFSelfCallRootNode",
+	"super" : "RTFSelfCallVisitor",
 	"category" : "RottenTestsFinder-SelfInterpreter",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
-	"instvars" : [
-		"astNode",
-		"hasBeenExecuted",
-		"metaLink"
-	],
-	"name" : "RTFSelfCallNode",
+	"instvars" : [ ],
+	"name" : "RTFRecursiveMetalinksUninstaller",
 	"type" : "normal"
 }
