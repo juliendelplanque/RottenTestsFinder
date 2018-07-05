@@ -8,3 +8,8 @@ rtfBuilderBuildContextMenu: menu
 		target: Clipboard default
 		selector: #clipboardText:
 		argument: self compiledMethod printString.
+		
+	menu
+		add: 'Inspect'
+		target: self
+		selector: #inspect
