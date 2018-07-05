@@ -51,12 +51,12 @@ visitTestCase: aTestCase
 	assertionPrimitiveMetaLinks do: #uninstall.	
 	helperMetaLinks do: #uninstall.
 
-	"Checks whether test is rotten or not."
-	(assertionPrimitiveCallSites allSatisfy: #hasBeenExecuted)
+	"Checks whether test is rotten or not (i.e. is there an assertion primitive or helper call site not executed)."
+	((assertionPrimitiveCallSites allSatisfy: #hasBeenExecuted) and: [ helperCallSites allSatisfy: #hasBeenExecuted ])
 		ifFalse: [ 
 			self rottenTests
-				add: (compiledMethod origin generateRottenTestFromCompiledMethod: compiledMethod testCase: aTestCase) ].
-	
-	self flag: #TODO. "check for helpers as well."
+				add: ((compiledMethod origin generateRottenTestFromCompiledMethod: compiledMethod testCase: aTestCase)
+							callSites: (assertionPrimitiveCallSites reject: #hasBeenExecuted thenCollect: #astNode),(helperCallSites reject: #hasBeenExecuted thenCollect: #astNode);
+							yourself) ].
 	
 	RTFTestAnalysed signalTest: compiledMethod

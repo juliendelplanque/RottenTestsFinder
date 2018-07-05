@@ -6,7 +6,8 @@
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [
-		"compiledMethod"
+		"compiledMethod",
+		"callSites"
 	],
 	"name" : "RottenTest",
 	"type" : "normal"
