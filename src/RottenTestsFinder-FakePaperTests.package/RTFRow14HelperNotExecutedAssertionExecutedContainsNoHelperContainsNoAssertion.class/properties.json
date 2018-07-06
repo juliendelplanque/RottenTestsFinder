@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "",
+	"super" : "RTFAbstractTestCaseForPaper",
+	"category" : "RottenTestsFinder-FakePaperTests",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "RTFRow14HelperNotExecutedAssertionExecutedContainsNoHelperContainsNoAssertion",
+	"type" : "normal"
+}
