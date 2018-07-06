@@ -61,7 +61,11 @@ visitTestCase: aTestCase
 							yourself) ].
 						
 	"Checks whether there is rotten helpers or not."
-	self flag: #todo.
+	helperCallSites select: #hasBeenExecuted thenDo: [ :selfCallNode |
+		|visitor|
+		visitor := RTFRottenHelpersFinder new.
+		selfCallNode acceptVisitor: visitor.
+		self rottenTests addAll: visitor rottenHelpers ].
 	
 	
 	RTFTestAnalysed signalTest: compiledMethod
