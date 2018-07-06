@@ -7,7 +7,8 @@ baseline: spec
 				spec repository: 'github://juliendelplanque/SUnit-Visitor:v1.1.1/src' ];
 			package: #'RottenTestsFinder' with: [ spec requires: #('SUnitVisitor') ];
 			package: #'RottenTestsFinder-GTInspectorExtensions' with: [ spec requires: #('RottenTestsFinder') ];
-			package: #'RottenTestsFinder-Tests' with: [ spec requires: #('RottenTestsFinder') ];
-			package: #'RottenTestsFinder-FakeTests' with: [ spec requires: #('RottenTestsFinder-Tests') ];
-			package: #'RottenTestsFinder-PaperTests' with: [ spec requires: #('RottenTestsFinder') ];
+			package: #'RottenTestsFinder-Tests' with: [ spec requires: #('RottenTestsFinder' 'RottenTestsFinder-Tests') ];
+			package: #'RottenTestsFinder-FakeTests';
+			package: #'RottenTestsFinder-PaperTests' with: [ spec requires: #('RottenTestsFinder' 'RottenTestsFinder-FakePaperTests') ];
+			package: #'RottenTestsFinder-FakePaperTests';
 			package: #'RottenTestsFinder-Spec' with: [ spec requires: #('RottenTestsFinder') ] ]
