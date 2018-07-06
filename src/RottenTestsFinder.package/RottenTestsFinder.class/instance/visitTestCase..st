@@ -14,6 +14,8 @@ visitTestCase: aTestCase
 	helperCallSites := rootCallNode subCalls reject: [ :selfCallNode |
 								self class assertionCompiledMethods includes: selfCallNode compiledMethod ].
 	
+	"Halt if: [ compiledMethod selector = #test3 ]."
+	
 	"Install Metalinks on assertion primitive call sites."
 	assertionPrimitiveMetaLinks := assertionPrimitiveCallSites collect: [ :selfCallNode |
 		|metalink|
