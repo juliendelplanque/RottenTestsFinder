@@ -22,7 +22,9 @@ visitTestCase: aTestCase
 			ifFalse: [ "If the test is not green, no need to continue analysis."
 				RTFTestAnalysed signalTest: compiledMethod.
 				^ self ].
-	] ensure: [ rootCallNode uninstallMetalinks ].
+	] ensure: [ 
+		testsRunCount := testsRunCount + 1.
+		rootCallNode uninstallMetalinks ].
 
 	"Checks whether test is rotten or not (i.e. is there an assertion primitive or helper call site not executed)."
 	((assertionPrimitiveCallSites allSatisfy: #hasBeenExecuted) and: [ helperCallSites allSatisfy: #hasBeenExecuted ])
