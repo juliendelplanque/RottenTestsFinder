@@ -1,6 +1,6 @@
 {
-	"commentStamp" : "JulienDelplanque 7/5/2018 11:33",
-	"super" : "RTFMetalinksInstaller",
+	"commentStamp" : "JulienDelplanque 7/6/2018 14:52",
+	"super" : "RTFSelfCallVisitor",
 	"category" : "RottenTestsFinder-SelfInterpreter",
 	"classinstvars" : [ ],
 	"pools" : [ ],

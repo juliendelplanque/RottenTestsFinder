@@ -1,6 +1,5 @@
 visiting
 visitRTFSelfCallNode: aRTFSelfCallNode
+	self installMetaLinkOn: aRTFSelfCallNode.
 	aRTFSelfCallNode subCalls do: [ :selfCallSubNode |
-		self installMetaLinkOn: selfCallSubNode.
-		selfCallSubNode subCalls do: [ :selfCallSubSubNode |
-			selfCallSubSubNode acceptVisitor: self ] ]
+		selfCallSubNode acceptVisitor: self. ]

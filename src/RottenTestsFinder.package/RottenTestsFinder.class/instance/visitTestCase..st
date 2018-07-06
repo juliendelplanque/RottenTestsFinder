@@ -14,45 +14,47 @@ visitTestCase: aTestCase
 	helperCallSites := rootCallNode subCalls reject: [ :selfCallNode |
 								self class assertionCompiledMethods includes: selfCallNode compiledMethod ].
 	
-	"Halt if: [ compiledMethod selector = #test3 ]."
-	
 	"Install Metalinks on assertion primitive call sites."
-	assertionPrimitiveMetaLinks := assertionPrimitiveCallSites collect: [ :selfCallNode |
+	"assertionPrimitiveMetaLinks := assertionPrimitiveCallSites collect: [ :selfCallNode |
 		|metalink|
 		metalink := MetaLink new
 						metaObject: selfCallNode;
 						selector: #markAsExecuted;
 						yourself.
 		selfCallNode astNode link: metalink.
-		metalink ].
+		metalink ]."
 	
 	"Install Metalinks on helper methods call sites."	
-	helperMetaLinks := helperCallSites collect: [ :selfCallNode |
+	"helperMetaLinks := helperCallSites collect: [ :selfCallNode |
 		|metalink|
 		metalink := MetaLink new
 						metaObject: selfCallNode;
 						selector: #markAsExecuted;
 						yourself.
 		selfCallNode astNode link: metalink.
-		metalink ].
+		metalink ]."
 	
 	"Install metalinks in helpers source code."
-	helperCallSites do: [ :selfCallNode |
-		selfCallNode acceptVisitor: RTFRecursiveMetalinksInstaller new ].
+	"helperCallSites do: [ :selfCallNode |
+		selfCallNode acceptVisitor: RTFRecursiveMetalinksInstaller new ]."
+	
+	rootCallNode acceptVisitor: RTFRecursiveMetalinksInstaller new.
 	
 	"Run the test, only interesting if green, else ignore."
-	(aTestCase run hasPassed and: [ aTestCase isExpectedFailure not ])
-		ifFalse: [ "If the test is not green, no need to continue analysis."
-			RTFTestAnalysed signalTest: compiledMethod.
-			assertionPrimitiveMetaLinks do: #uninstall.	
-			helperMetaLinks do: #uninstall.
-			^ self ].
+	[ 
+		(aTestCase run hasPassed and: [ aTestCase isExpectedFailure not ])
+			ifFalse: [ "If the test is not green, no need to continue analysis."
+				RTFTestAnalysed signalTest: compiledMethod.
+				^ self ].
+	] ensure: [
 	
-	"Uninstall Metalinks on call sites."
-	assertionPrimitiveMetaLinks do: #uninstall.	
-	helperMetaLinks do: #uninstall.
-	helperCallSites do: [ :selfCallNode |
-		selfCallNode acceptVisitor: RTFRecursiveMetalinksUninstaller new ].
+		"Uninstall Metalinks on call sites."
+		"assertionPrimitiveMetaLinks do: #uninstall.	
+		helperMetaLinks do: #uninstall.
+		helperCallSites do: [ :selfCallNode |
+			selfCallNode acceptVisitor: RTFRecursiveMetalinksUninstaller new ]."
+		rootCallNode acceptVisitor: RTFRecursiveMetalinksUninstaller new.
+	].
 
 	"Checks whether test is rotten or not (i.e. is there an assertion primitive or helper call site not executed)."
 	((assertionPrimitiveCallSites allSatisfy: #hasBeenExecuted) and: [ helperCallSites allSatisfy: #hasBeenExecuted ])

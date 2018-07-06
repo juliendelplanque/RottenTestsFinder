@@ -1,7 +1,5 @@
 visiting
 visitRTFSelfCallNode: aRTFSelfCallNode
+	self uninstallMetaLinkOf: aRTFSelfCallNode.
 	aRTFSelfCallNode subCalls do: [ :selfCallSubNode |
-		selfCallSubNode metaLink uninstall.
-		selfCallSubNode metaLink: nil.
-		selfCallSubNode subCalls do: [ :selfCallSubSubNode |
-			selfCallSubSubNode acceptVisitor: self ] ]
+		selfCallSubNode acceptVisitor: self ]

@@ -1,1 +1,3 @@
-Same thing as my superclass but recursively to reach all nodes of the tree.
+I recursively install metalinks in all helpers methods directly reachable from the node where the visit is started.
+
+Stores the Metalink in RTFSelfCallNode I visit.
