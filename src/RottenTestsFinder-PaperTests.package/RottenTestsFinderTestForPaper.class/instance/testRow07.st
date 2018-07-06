@@ -5,4 +5,6 @@ testRow07
 	
 	self
 		assert: rottenTestsFound rottenTests size equals: 1;
-		assertCollection: rottenTestsFound rottenCompiledMethods hasSameElements: { RTFRow07HelperExecutedAssertionNotExecutedContainsNoHelperContainsAssertion >> #test }
+		assert: (rottenTestsFound rottenCompiledMethods anySatisfy: [ :m | 
+			m methodClass = RTFRow07HelperExecutedAssertionNotExecutedContainsNoHelperContainsAssertion
+				and: [ m selector = #test ] ])

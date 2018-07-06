@@ -4,5 +4,10 @@ testRow03
 	rottenTestsFound := RottenTestsFinder analyze: RTFRow03HelperExecutedAssertionNotExecutedContainsHelperContainsAssertion suite.
 	
 	self
-		assert: rottenTestsFound rottenTests size equals: 1;
-		assertCollection: rottenTestsFound rottenCompiledMethods hasSameElements: { RTFRow03HelperExecutedAssertionNotExecutedContainsHelperContainsAssertion >> #test }
+		assert: rottenTestsFound rottenTests size equals: 2;
+		assert: (rottenTestsFound rottenCompiledMethods anySatisfy: [ :m | 
+			m methodClass = RTFRow03HelperExecutedAssertionNotExecutedContainsHelperContainsAssertion
+				and: [ m selector = #test ] ]);
+		assert: (rottenTestsFound rottenCompiledMethods anySatisfy: [ :m | 
+			m methodClass = RTFAbstractTestCaseForPaper
+				and: [ m selector = #rottenHelper ] ])
