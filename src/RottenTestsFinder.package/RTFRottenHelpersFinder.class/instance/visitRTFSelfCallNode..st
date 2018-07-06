@@ -7,7 +7,7 @@ visitRTFSelfCallNode: aRTFSelfCallNode
 		 		selfSubCall acceptVisitor: self ].
 			^ self ].
 		
-	self rottenHelpers add: ((RottenTestHelper compiledMethod: aRTFSelfCallNode compiledMethod)
+	self addRottenHelper: ((RottenTestHelper compiledMethod: aRTFSelfCallNode compiledMethod)
 										callSites: (aRTFSelfCallNode subCalls reject: #hasBeenExecuted thenCollect: #astNode);
 										yourself).
 	aRTFSelfCallNode subCalls
