@@ -1,5 +1,6 @@
 visiting
 visitRTFSelfCallNode: aRTFSelfCallNode
+	
 	(aRTFSelfCallNode subCalls allSatisfy: #hasBeenExecuted)
 		ifTrue: [ 
 			aRTFSelfCallNode subCalls do: [ :selfSubCall |
