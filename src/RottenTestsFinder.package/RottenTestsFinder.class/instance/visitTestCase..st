@@ -1,6 +1,6 @@
 visiting
 visitTestCase: aTestCase
-	| compiledMethod rootCallNode assertionPrimitiveCallSites assertionPrimitiveMetaLinks helperMetaLinks helperCallSites |
+	| compiledMethod rootCallNode assertionPrimitiveCallSites helperCallSites |
 	testsVisitedCount := testsVisitedCount + 1.
 	compiledMethod := aTestCase class lowestCompiledMethodInInheritanceChainNamed: aTestCase selector.
 	
@@ -14,31 +14,7 @@ visitTestCase: aTestCase
 	helperCallSites := rootCallNode subCalls reject: [ :selfCallNode |
 								self class assertionCompiledMethods includes: selfCallNode compiledMethod ].
 	
-	"Install Metalinks on assertion primitive call sites."
-	"assertionPrimitiveMetaLinks := assertionPrimitiveCallSites collect: [ :selfCallNode |
-		|metalink|
-		metalink := MetaLink new
-						metaObject: selfCallNode;
-						selector: #markAsExecuted;
-						yourself.
-		selfCallNode astNode link: metalink.
-		metalink ]."
-	
-	"Install Metalinks on helper methods call sites."	
-	"helperMetaLinks := helperCallSites collect: [ :selfCallNode |
-		|metalink|
-		metalink := MetaLink new
-						metaObject: selfCallNode;
-						selector: #markAsExecuted;
-						yourself.
-		selfCallNode astNode link: metalink.
-		metalink ]."
-	
-	"Install metalinks in helpers source code."
-	"helperCallSites do: [ :selfCallNode |
-		selfCallNode acceptVisitor: RTFRecursiveMetalinksInstaller new ]."
-	
-	rootCallNode acceptVisitor: RTFRecursiveMetalinksInstaller new.
+	rootCallNode installMetalinks.
 	
 	"Run the test, only interesting if green, else ignore."
 	[ 
@@ -46,15 +22,7 @@ visitTestCase: aTestCase
 			ifFalse: [ "If the test is not green, no need to continue analysis."
 				RTFTestAnalysed signalTest: compiledMethod.
 				^ self ].
-	] ensure: [
-	
-		"Uninstall Metalinks on call sites."
-		"assertionPrimitiveMetaLinks do: #uninstall.	
-		helperMetaLinks do: #uninstall.
-		helperCallSites do: [ :selfCallNode |
-			selfCallNode acceptVisitor: RTFRecursiveMetalinksUninstaller new ]."
-		rootCallNode acceptVisitor: RTFRecursiveMetalinksUninstaller new.
-	].
+	] ensure: [ rootCallNode uninstallMetalinks ].
 
 	"Checks whether test is rotten or not (i.e. is there an assertion primitive or helper call site not executed)."
 	((assertionPrimitiveCallSites allSatisfy: #hasBeenExecuted) and: [ helperCallSites allSatisfy: #hasBeenExecuted ])
