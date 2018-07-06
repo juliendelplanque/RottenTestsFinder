@@ -8,5 +8,6 @@ baseline: spec
 			package: #'RottenTestsFinder' with: [ spec requires: #('SUnitVisitor') ];
 			package: #'RottenTestsFinder-GTInspectorExtensions' with: [ spec requires: #('RottenTestsFinder') ];
 			package: #'RottenTestsFinder-Tests' with: [ spec requires: #('RottenTestsFinder') ];
+			package: #'RottenTestsFinder-FakeTests' with: [ spec requires: #('RottenTestsFinder-Tests') ];
 			package: #'RottenTestsFinder-PaperTests' with: [ spec requires: #('RottenTestsFinder') ];
 			package: #'RottenTestsFinder-Spec' with: [ spec requires: #('RottenTestsFinder') ] ]

@@ -1,11 +1,11 @@
 {
 	"commentStamp" : "",
-	"super" : "TestCase",
-	"category" : "RottenTestsFinder-Tests",
+	"super" : "RTFFakeTestSuperClass",
+	"category" : "RottenTestsFinder-FakeTests",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [ ],
-	"name" : "RTFFakeTestSuperClass",
+	"name" : "RTFFakeTestClass",
 	"type" : "normal"
 }
