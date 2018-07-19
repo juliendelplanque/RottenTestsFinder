@@ -14,5 +14,6 @@ rtfBuilderBuildContextMenu: menu
 		target: [ 
 			RTFCallSitesViewer new
 				onCallSites: self callSites;
+				extent: (World extent * 0.6);
 				openWithSpec ]
 		selector: #value
