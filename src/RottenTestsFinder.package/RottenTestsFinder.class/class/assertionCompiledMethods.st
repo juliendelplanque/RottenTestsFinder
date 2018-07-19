@@ -7,4 +7,4 @@ assertionCompiledMethods
 					ifTrue: [ o method ]
 					ifFalse: [ o ] ])
 			reject: [ :compiledMethod |
-				#(#fail: #fail #signalFailure:) includes: compiledMethod selector ]
+				#(#fail: #fail #signalFailure: #skip #skip:) includes: compiledMethod selector ]
