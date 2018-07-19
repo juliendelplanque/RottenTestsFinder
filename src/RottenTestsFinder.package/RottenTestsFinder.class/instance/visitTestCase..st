@@ -1,6 +1,6 @@
 visiting
 visitTestCase: aTestCase
-	| compiledMethod rootCallNode assertionPrimitiveCallSites helperCallSites |
+	| compiledMethod rootCallNode callSites |
 	testsVisitedCount := testsVisitedCount + 1.
 	compiledMethod := aTestCase class lowestCompiledMethodInInheritanceChainNamed: aTestCase selector.
 	
@@ -9,10 +9,7 @@ visitTestCase: aTestCase
 							send: compiledMethod selector fromClass: aTestCase class;
 							rootSelfCall) cleanSubTreesNotLeadingToAssertPrimitive.
 	
-	assertionPrimitiveCallSites := rootCallNode subCalls select: [ :selfCallNode |
-												self class assertionCompiledMethods includes: selfCallNode compiledMethod ].
-	helperCallSites := rootCallNode subCalls reject: [ :selfCallNode |
-								self class assertionCompiledMethods includes: selfCallNode compiledMethod ].
+	callSites := rootCallNode subCalls.
 	
 	rootCallNode installMetalinks.
 	
@@ -27,19 +24,21 @@ visitTestCase: aTestCase
 		rootCallNode uninstallMetalinks ].
 
 	"Checks whether test is rotten or not (i.e. is there an assertion primitive or helper call site not executed)."
-	((assertionPrimitiveCallSites allSatisfy: #hasBeenExecuted) and: [ helperCallSites allSatisfy: #hasBeenExecuted ])
+	(callSites allSatisfy: #hasBeenExecuted)
 		ifFalse: [ 
 			self rottenTests
 				add: ((compiledMethod origin generateRottenTestFromCompiledMethod: compiledMethod testCase: aTestCase)
-							callSites: (assertionPrimitiveCallSites reject: #hasBeenExecuted thenCollect: #astNode),(helperCallSites reject: #hasBeenExecuted thenCollect: #astNode);
+							callSites: (callSites reject: #hasBeenExecuted thenCollect: #astNode);
 							yourself) ].
 	
 	"Checks whether there is rotten helpers or not."
-	helperCallSites select: #hasBeenExecuted thenDo: [ :selfCallNode |
-		|visitor|
-		visitor := RTFRottenHelpersFinder new.
-		selfCallNode acceptVisitor: visitor.
-		self rottenTests addAll: visitor rottenHelpers ].
+	callSites
+		select: [ :callSite | callSite isCallToAssertPrimitive not and: [ callSite hasBeenExecuted ] ]
+		thenDo: [ :selfCallNode |
+			|visitor|
+			visitor := RTFRottenHelpersFinder new.
+			selfCallNode acceptVisitor: visitor.
+			self rottenTests addAll: visitor rottenHelpers ].
 	
 	
 	RTFTestAnalysed signalTest: compiledMethod
