@@ -1,0 +1,13 @@
+{
+	"commentStamp" : "JulienDelplanque 7/24/2018 13:41",
+	"super" : "RTFSelfCallVisitor",
+	"category" : "RottenTestsFinder-SelfInterpreter",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"helperCalls"
+	],
+	"name" : "RTFHelperCallsCollector",
+	"type" : "normal"
+}
