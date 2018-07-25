@@ -1,0 +1,1 @@
+I am an abstract visitor for selfcall nodes.
