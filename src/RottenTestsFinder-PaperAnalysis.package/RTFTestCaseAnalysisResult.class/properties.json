@@ -8,7 +8,9 @@
 	"instvars" : [
 		"testCase",
 		"primitivesCalls",
-		"helperCalls"
+		"helperCalls",
+		"branchCalls",
+		"loopCalls"
 	],
 	"name" : "RTFTestCaseAnalysisResult",
 	"type" : "normal"
