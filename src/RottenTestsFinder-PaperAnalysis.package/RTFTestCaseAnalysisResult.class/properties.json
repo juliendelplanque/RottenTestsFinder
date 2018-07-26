@@ -13,6 +13,7 @@
 		"firstLevelHelperCalls",
 		"maxDepth",
 		"isRotten",
+		"helpers",
 		"branchCalls",
 		"loopCalls"
 	],

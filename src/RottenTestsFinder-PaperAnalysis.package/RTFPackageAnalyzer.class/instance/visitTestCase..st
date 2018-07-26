@@ -3,7 +3,7 @@ visitTestCase: aTestCase
 	"Defines the behaviour while visiting a TestCase.
 	 This method must be overrided by users of this trait.
 	"
-	| compiledMethod analysisResult selfCallTree firstLevelCalls |
+	| compiledMethod analysisResult selfCallTree firstLevelCalls rottenTests |
 	compiledMethod := aTestCase class lowestCompiledMethodInInheritanceChainNamed: aTestCase selector.
 	selfCallTree := [ RTFSelfCallInterpreter new
 							considerClassesThat: [ :class | class inheritsFrom: TestAsserter ];
@@ -15,6 +15,7 @@ visitTestCase: aTestCase
 	
 	"Build results."
 	selfCallTree cleanSubTreesNotLeadingToAssertPrimitive.
+	rottenTests := [ RottenTestsFinder analyze: aTestCase ] on: Warning do: #resume.
 	analysisResult := RTFTestCaseAnalysisResult new.
 	analysisResult
 		testCase: aTestCase;
@@ -23,7 +24,8 @@ visitTestCase: aTestCase
 		helperCalls: selfCallTree helperCompiledMethodCalled;
 		firstLevelHelperCalls: (selfCallTree subCalls collect: #compiledMethod thenSelect: [ :cm | RottenTestsFinder assertionCompiledMethods includes: cm ]);
 		maxDepth: selfCallTree helperMaxDepth;
-		isRotten: (([ RottenTestsFinder analyze: aTestCase ] on: Warning do: #resume) isCompiledMethodRotten: compiledMethod)";
+		isRotten: (rottenTests isCompiledMethodRotten: compiledMethod);
+		helpers: (rottenTests rottenTests select: #isRottenTestHelper)";
 		branchCalls: (firstLevelCalls select: [ :selector | self branchSelectors includes: selector ]);
 		loopCalls: (firstLevelCalls select: [ :selector | self loopSelectors includes: selector ])".
 		
