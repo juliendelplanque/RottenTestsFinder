@@ -1,0 +1,3 @@
+visiting
+visitRTFRPackageAnalysisResult: aRTFRPackageAnalysisResult
+	^ self subclassResponsibility

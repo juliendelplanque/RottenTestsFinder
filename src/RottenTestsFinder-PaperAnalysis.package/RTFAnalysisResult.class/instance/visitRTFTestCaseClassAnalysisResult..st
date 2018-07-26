@@ -1,0 +1,3 @@
+visiting
+visitRTFTestCaseClassAnalysisResult: aRTFTestCaseClassAnalysisResult
+	^ self subclassResponsibility

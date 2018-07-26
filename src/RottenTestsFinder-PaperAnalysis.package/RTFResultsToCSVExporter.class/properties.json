@@ -1,14 +1,15 @@
 {
 	"commentStamp" : "",
-	"super" : "Object",
+	"super" : "RTFAnalysisResult",
 	"category" : "RottenTestsFinder-PaperAnalysis",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [
-		"testCaseAnalysisResults",
-		"testCaseClass"
+		"neoCSV",
+		"currentPackageName",
+		"currentClassName"
 	],
-	"name" : "RTFRTestCaseClassAnalysisResult",
+	"name" : "RTFResultsToCSVExporter",
 	"type" : "normal"
 }

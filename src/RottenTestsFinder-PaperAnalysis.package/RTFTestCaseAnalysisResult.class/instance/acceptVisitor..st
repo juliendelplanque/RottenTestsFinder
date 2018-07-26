@@ -1,0 +1,3 @@
+visiting
+acceptVisitor: aRTFAnalysisResultVisitor
+	^ aRTFAnalysisResultVisitor visitRTFTestCaseAnalysisResult: self

@@ -11,16 +11,20 @@ visitTestCase: aTestCase
 							rootSelfCall ] on: Warning do: #resume.
 	
 	"Collect calls made in the compiled method."
-	firstLevelCalls := selfCallTree subCalls collect: [ :node | node compiledMethod selector ].
-	Halt if: [ compiledMethod methodClass = RTFRow04HelperNotExecutedAssertionNotExecutedContainsHelperContainsAssertion ].
+	"firstLevelCalls := selfCallTree subCalls collect: [ :node | node compiledMethod selector ]."
+	
 	"Build results."
 	selfCallTree cleanSubTreesNotLeadingToAssertPrimitive.
 	analysisResult := RTFTestCaseAnalysisResult new.
 	analysisResult
 		testCase: aTestCase;
 		primitivesCalls: selfCallTree primitiveCompiledMethodCalled;
+		firstLevelPrimitivesCalls: (selfCallTree subCalls collect: #compiledMethod thenReject: [ :cm | RottenTestsFinder assertionCompiledMethods includes: cm ]);
 		helperCalls: selfCallTree helperCompiledMethodCalled;
+		firstLevelHelperCalls: (selfCallTree subCalls collect: #compiledMethod thenSelect: [ :cm | RottenTestsFinder assertionCompiledMethods includes: cm ]);
+		maxDepth: selfCallTree helperMaxDepth;
+		isRotten: ((RottenTestsFinder analyze: aTestCase) isCompiledMethodRotten: compiledMethod)";
 		branchCalls: (firstLevelCalls select: [ :selector | self branchSelectors includes: selector ]);
-		loopCalls: (firstLevelCalls select: [ :selector | self loopSelectors includes: selector ]).
+		loopCalls: (firstLevelCalls select: [ :selector | self loopSelectors includes: selector ])".
 		
 	^ analysisResult

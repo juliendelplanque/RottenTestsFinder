@@ -6,9 +6,9 @@
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [
-		"package",
-		"testCaseClassesAnalysisResults"
+		"testCaseAnalysisResults",
+		"testCaseClass"
 	],
-	"name" : "RTFRPackageAnalysisResult",
+	"name" : "RTFTestCaseClassAnalysisResult",
 	"type" : "normal"
 }

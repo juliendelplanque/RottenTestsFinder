@@ -8,7 +8,11 @@
 	"instvars" : [
 		"testCase",
 		"primitivesCalls",
+		"firstLevelPrimitivesCalls",
 		"helperCalls",
+		"firstLevelHelperCalls",
+		"maxDepth",
+		"isRotten",
 		"branchCalls",
 		"loopCalls"
 	],

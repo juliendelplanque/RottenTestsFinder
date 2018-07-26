@@ -5,10 +5,7 @@
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
-	"instvars" : [
-		"package",
-		"testCaseClassesAnalysisResults"
-	],
-	"name" : "RTFRPackageAnalysisResult",
+	"instvars" : [ ],
+	"name" : "RTFAnalysisResult",
 	"type" : "normal"
 }

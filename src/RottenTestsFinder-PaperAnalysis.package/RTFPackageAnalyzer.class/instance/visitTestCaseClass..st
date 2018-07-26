@@ -1,6 +1,6 @@
 visiting
 visitTestCaseClass: aTestCaseClass
-	^ RTFRTestCaseClassAnalysisResult new
+	^ RTFTestCaseClassAnalysisResult new
 		testCaseClass: aTestCaseClass;
 		testCaseAnalysisResults: (self privateVisitTestCaseClass: aTestCaseClass);
 		yourself
