@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "",
+	"super" : "RTFSelfCallVisitor",
+	"category" : "RottenTestsFinder-SelfInterpreter",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "RTFMaxHelperDepthComputer",
+	"type" : "normal"
+}
