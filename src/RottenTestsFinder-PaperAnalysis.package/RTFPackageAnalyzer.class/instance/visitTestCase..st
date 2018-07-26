@@ -23,7 +23,7 @@ visitTestCase: aTestCase
 		helperCalls: selfCallTree helperCompiledMethodCalled;
 		firstLevelHelperCalls: (selfCallTree subCalls collect: #compiledMethod thenSelect: [ :cm | RottenTestsFinder assertionCompiledMethods includes: cm ]);
 		maxDepth: selfCallTree helperMaxDepth;
-		isRotten: ((RottenTestsFinder analyze: aTestCase) isCompiledMethodRotten: compiledMethod)";
+		isRotten: (([ RottenTestsFinder analyze: aTestCase ] on: Warning do: #resume) isCompiledMethodRotten: compiledMethod)";
 		branchCalls: (firstLevelCalls select: [ :selector | self branchSelectors includes: selector ]);
 		loopCalls: (firstLevelCalls select: [ :selector | self loopSelectors includes: selector ])".
 		
