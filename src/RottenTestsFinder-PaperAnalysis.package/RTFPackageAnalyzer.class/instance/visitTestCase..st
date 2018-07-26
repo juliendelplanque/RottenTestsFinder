@@ -1,4 +1,4 @@
-visiting
+as yet unclassified
 visitTestCase: aTestCase
 	"Defines the behaviour while visiting a TestCase.
 	 This method must be overrided by users of this trait.
@@ -20,12 +20,12 @@ visitTestCase: aTestCase
 	analysisResult
 		testCase: aTestCase;
 		primitivesCalls: selfCallTree primitiveCompiledMethodCalled;
-		firstLevelPrimitivesCalls: (selfCallTree subCalls collect: #compiledMethod thenReject: [ :cm | RottenTestsFinder assertionCompiledMethods includes: cm ]);
+		firstLevelPrimitivesCalls: (selfCallTree subCalls reject: #isCallToAssertPrimitive thenCollect: #compiledMethod);
 		helperCalls: selfCallTree helperCompiledMethodCalled;
-		firstLevelHelperCalls: (selfCallTree subCalls collect: #compiledMethod thenSelect: [ :cm | RottenTestsFinder assertionCompiledMethods includes: cm ]);
+		firstLevelHelperCalls: (selfCallTree subCalls select: #isCallToAssertPrimitive thenCollect: #compiledMethod);
 		maxDepth: selfCallTree helperMaxDepth;
 		isRotten: (rottenTests isCompiledMethodRotten: compiledMethod);
-		helpers: (rottenTests rottenTests select: #isRottenTestHelper)";
+		helpers: (rottenTests rottenTests select: #isRottenTestHelper thenCollect: #compiledMethod)";
 		branchCalls: (firstLevelCalls select: [ :selector | self branchSelectors includes: selector ]);
 		loopCalls: (firstLevelCalls select: [ :selector | self loopSelectors includes: selector ])".
 		
