@@ -9,8 +9,7 @@ baseline: spec
 			spec
 				className: 'ConfigurationOfNeoCSV';
 				version: #stable;
-				repository: 'http://smalltalkhub.com/mc/SvenVanCaekenberghe/Neo/main';
-				load ];
+				repository: 'http://smalltalkhub.com/mc/SvenVanCaekenberghe/Neo/main' ];
 			package: #'RottenTestsFinder' with: [ spec requires: #('SUnitVisitor') ];
 			package: #'RottenTestsFinder-GTInspectorExtensions' with: [ spec requires: #('RottenTestsFinder') ];
 			package: #'RottenTestsFinder-Tests' with: [ spec requires: #('RottenTestsFinder' 'RottenTestsFinder-FakeTests') ];
