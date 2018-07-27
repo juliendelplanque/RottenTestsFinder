@@ -9,4 +9,5 @@ addHeader
 			'All primitives calls involved in execution count'
 			'Helpers calls in test count'
 			'All helpers calls involved in execution count'
+			'Test contains return'
 			'Is rotten')

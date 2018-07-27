@@ -29,5 +29,7 @@ visitRTFTestCaseAnalysisResult: aRTFTestCaseAnalysisResult
 						(selfCallTree subCalls reject: #isCallToAssertPrimitive thenCollect: #compiledMethod) size.
 						selfCallTree helperCompiledMethodCalled size.
 						(selfCallTree subCalls select: #isCallToAssertPrimitive thenCollect: #compiledMethod) size.
+						"TODO: assert: false"
+						compiledMethod ast body containsReturn.
 						isRotten
 			 } ] ]
