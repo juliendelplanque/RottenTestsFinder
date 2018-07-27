@@ -15,7 +15,9 @@ visitTestCase: aTestCase
 	
 	"Run the test, only interesting if green, else ignore."
 	[ 
-		(aTestCase run hasPassed and: [ aTestCase isExpectedFailure not ])
+		|testResult|
+		testResult := aTestCase run.
+		(testResult hasPassed and: [ aTestCase isExpectedFailure not and: [ testResult skippedCount = 0 ] ])
 			ifFalse: [ "If the test is not green, no need to continue analysis."
 				RTFTestAnalysed signalTest: compiledMethod.
 				^ self ].
