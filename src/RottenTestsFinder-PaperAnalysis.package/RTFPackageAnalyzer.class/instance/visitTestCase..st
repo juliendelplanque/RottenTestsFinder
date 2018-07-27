@@ -30,7 +30,7 @@ visitTestCase: aTestCase
 															ifEmpty: [ nil ]
 															ifNotEmpty: [ :callSites |
 																callSites allSatisfy: [ :callSite |
-																	callSite selector = #assert:
+																	(callSite selector = #assert: or: [ callSite selector = #assert:description: ])
 																		and: [ callSite arguments first isLiteralNode
 																			and: [ callSite arguments first value not ] ] ] ]);
 		testContainsReturn: compiledMethod ast body containsReturn";
