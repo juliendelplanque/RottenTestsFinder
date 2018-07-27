@@ -20,9 +20,9 @@ visitTestCase: aTestCase
 	analysisResult
 		testCase: aTestCase;
 		primitivesCalls: selfCallTree primitiveCompiledMethodCalled;
-		firstLevelPrimitivesCalls: (selfCallTree subCalls reject: #isCallToAssertPrimitive thenCollect: #compiledMethod);
+		firstLevelPrimitivesCalls: (selfCallTree subCalls select: #isCallToAssertPrimitive thenCollect: #compiledMethod);
 		helperCalls: selfCallTree helperCompiledMethodCalled;
-		firstLevelHelperCalls: (selfCallTree subCalls select: #isCallToAssertPrimitive thenCollect: #compiledMethod);
+		firstLevelHelperCalls: (selfCallTree subCalls reject: #isCallToAssertPrimitive thenCollect: #compiledMethod);
 		maxDepth: selfCallTree helperMaxDepth;
 		isRotten: (rottenTests isCompiledMethodRotten: compiledMethod);
 		helpers: (rottenTests rottenTests select: #isRottenTestHelper thenCollect: #compiledMethod)";
