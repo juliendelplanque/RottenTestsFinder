@@ -18,7 +18,8 @@
 		"contextDependentRottenAsserts",
 		"branchCalls",
 		"loopCalls",
-		"assertCallSitesGettingFalseLiteral"
+		"assertCallSitesGettingFalseLiteral",
+		"rottenTests"
 	],
 	"name" : "RTFTestCaseAnalysisResult",
 	"type" : "normal"

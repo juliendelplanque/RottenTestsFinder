@@ -19,6 +19,7 @@ visitTestCase: aTestCase
 	analysisResult := RTFTestCaseAnalysisResult new.
 	analysisResult
 		testCase: aTestCase;
+		rottenTests: rottenTests;
 		primitivesCalls: selfCallTree primitiveCompiledMethodCalled;
 		firstLevelPrimitivesCalls: (selfCallTree subCalls select: #isCallToAssertPrimitive thenCollect: #compiledMethod);
 		helperCalls: selfCallTree helperCompiledMethodCalled;
