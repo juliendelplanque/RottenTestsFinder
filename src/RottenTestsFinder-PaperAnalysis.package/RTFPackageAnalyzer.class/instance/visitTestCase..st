@@ -26,13 +26,12 @@ visitTestCase: aTestCase
 		maxDepth: selfCallTree helperMaxDepth;
 		isRotten: (rottenTests isCompiledMethodRotten: compiledMethod);
 		helpers: (rottenTests rottenTests select: #isRottenTestHelper thenCollect: #compiledMethod);
-		allAssertCallSitesGetFalseLiteral: ((rottenTests rottenTestForCompiledMethod: compiledMethod ifPresent: [ :rt | rt callSites ] ifAbsent: [ #() ])
-															ifEmpty: [ nil ]
+		assertCallSitesGettingFalseLiteral: ((rottenTests rottenTestForCompiledMethod: compiledMethod ifPresent: [ :rt | rt callSites ] ifAbsent: [ #() ])
 															ifNotEmpty: [ :callSites |
-																callSites allSatisfy: [ :callSite |
+																(callSites select: [ :callSite |
 																	(callSite selector = #assert: or: [ callSite selector = #assert:description: ])
 																		and: [ callSite arguments first isLiteralNode
-																			and: [ callSite arguments first value not ] ] ] ]);
+																			and: [ callSite arguments first value not ] ] ]) ]);
 		testContainsReturn: compiledMethod ast body containsReturn";
 		branchCalls: (firstLevelCalls select: [ :selector | self branchSelectors includes: selector ]);
 		loopCalls: (firstLevelCalls select: [ :selector | self loopSelectors includes: selector ])".

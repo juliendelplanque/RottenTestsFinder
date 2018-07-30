@@ -14,10 +14,10 @@
 		"maxDepth",
 		"isRotten",
 		"helpers",
-		"allAssertCallSitesGetFalseLiteral",
 		"testContainsReturn",
 		"branchCalls",
-		"loopCalls"
+		"loopCalls",
+		"assertCallSitesGettingFalseLiteral"
 	],
 	"name" : "RTFTestCaseAnalysisResult",
 	"type" : "normal"
