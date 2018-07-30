@@ -1,4 +1,4 @@
-as yet unclassified
+visiting
 visitTestCase: aTestCase
 	"Defines the behaviour while visiting a TestCase.
 	 This method must be overrided by users of this trait.
@@ -32,7 +32,11 @@ visitTestCase: aTestCase
 																	(callSite selector = #assert: or: [ callSite selector = #assert:description: ])
 																		and: [ callSite arguments first isLiteralNode
 																			and: [ callSite arguments first value not ] ] ]) ]);
-		testContainsReturn: compiledMethod ast body containsReturn";
+		testContainsReturn: compiledMethod ast body containsReturn;
+		contextDependentRottenAsserts: ((rottenTests rottenTestForCompiledMethod: compiledMethod ifPresent: [ :rt | rt callSites ] ifAbsent: [ #() ])
+															ifNotEmpty: [ :callSites |
+																(callSites select: [ :callSite |
+																	self contextSelectors includes: callSite rtfContext selector ]) ])";
 		branchCalls: (firstLevelCalls select: [ :selector | self branchSelectors includes: selector ]);
 		loopCalls: (firstLevelCalls select: [ :selector | self loopSelectors includes: selector ])".
 		

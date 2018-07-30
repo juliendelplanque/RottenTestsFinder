@@ -11,5 +11,6 @@ visitRTFTestCaseAnalysisResult: aRTFTestCaseAnalysisResult
 			aRTFTestCaseAnalysisResult firstLevelHelperCalls size. "# assert primitives sur le premier niveau"
 			aRTFTestCaseAnalysisResult helperCalls size. "# assert impliqués dans l'execution"
 			aRTFTestCaseAnalysisResult testContainsReturn.
+			aRTFTestCaseAnalysisResult contextDependentRottenAsserts size.
 			aRTFTestCaseAnalysisResult isRotten "is rotten?"
 		}

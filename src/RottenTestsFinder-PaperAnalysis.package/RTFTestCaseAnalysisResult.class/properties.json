@@ -15,6 +15,7 @@
 		"isRotten",
 		"helpers",
 		"testContainsReturn",
+		"contextDependentRottenAsserts",
 		"branchCalls",
 		"loopCalls",
 		"assertCallSitesGettingFalseLiteral"

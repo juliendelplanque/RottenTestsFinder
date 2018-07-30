@@ -1,0 +1,3 @@
+accessing
+contextDependentRottenAsserts: anObject
+	contextDependentRottenAsserts := anObject

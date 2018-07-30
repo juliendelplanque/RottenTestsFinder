@@ -11,4 +11,5 @@ addHeader
 			'Helpers calls in test count'
 			'All helpers calls involved in execution count'
 			'Test contains return'
+			'Context dependent rotten assert count'
 			'Is rotten')
