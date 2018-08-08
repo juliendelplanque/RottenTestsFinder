@@ -7,7 +7,7 @@ runExperimentNamed: projectName fromExperimentMeta: aFileReference andWriteResul
 			skipHeader;
 			upToEnd) detect: [ :array | array first = projectName ] ifNone: [ self error: 'Unknown project' ] ].
 	self
-		assert: (regex := projectMeta second) isNotEmpty
+		assert: (regex := projectMeta second) isNotNil
 		description: 'A regex to select test packages should be defined.';
 		assert: (imageVersion := projectMeta third) = Smalltalk version
 		description: 'The version of the image in which this script is run should be compatible with project version.'.
