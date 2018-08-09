@@ -1,0 +1,3 @@
+computed-metrics
+maximumOfHelperCallsInTestCounts
+	^ self helperCallsInTestCounts max

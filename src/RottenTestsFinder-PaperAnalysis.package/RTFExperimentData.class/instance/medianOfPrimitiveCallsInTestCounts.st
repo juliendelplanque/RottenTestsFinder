@@ -1,0 +1,3 @@
+computed-metrics
+medianOfPrimitiveCallsInTestCounts
+	^ self primitiveCallsInTestCounts median

@@ -1,3 +1,3 @@
 computed
 testPackages
-	^ (self data collect: #first) asSet
+	^ (self tests collect: #first) asSet

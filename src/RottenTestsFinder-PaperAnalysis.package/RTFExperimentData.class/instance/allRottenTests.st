@@ -1,3 +1,3 @@
 computed
 allRottenTests
-	^ self data select: #last
+	^ self tests select: #last
