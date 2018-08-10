@@ -21,6 +21,7 @@ parseResultsIn: aDirectory
 							addFieldConverter: [ :str | str = 'true' ];
 							addIntegerField;
 							addFieldConverter: [ :str | str = 'true' ];
+							addIntegerField;
 							upToEnd) ].
 		(aDirectory / ('rotten-helpers-',expName,'.csv')) readStreamDo: [ :s |
 			expData
@@ -37,4 +38,5 @@ parseResultsIn: aDirectory
 							addFieldConverter: [ :str | str = 'true' ];
 							addIntegerField;
 							addFieldConverter: [ :str | str = 'true' ];
+							addIntegerField;
 							upToEnd) ] ]
