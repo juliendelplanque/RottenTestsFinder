@@ -12,5 +12,6 @@ visitRTFTestCaseAnalysisResult: aRTFTestCaseAnalysisResult
 			aRTFTestCaseAnalysisResult helperCalls size. "# helpers impliqués dans l'execution"
 			aRTFTestCaseAnalysisResult testContainsReturn.
 			aRTFTestCaseAnalysisResult contextDependentRottenAsserts size.
-			aRTFTestCaseAnalysisResult isRotten "is rotten?"
+			aRTFTestCaseAnalysisResult isRotten. "is rotten?"
+			aRTFTestCaseAnalysisResult testCase origin classDepth - TestCase classDepth "Class depth"
 		}

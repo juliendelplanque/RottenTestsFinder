@@ -40,5 +40,6 @@ visitRTFTestCaseAnalysisResult: aRTFTestCaseAnalysisResult
 															ifNotEmpty: [ :callSites |
 																(callSites select: [ :callSite |
 																	RTFPackageAnalyzer contextSelectors includes: callSite rtfContext selector ]) ]) size.
-						isRotten
+						isRotten.
+						compiledMethod origin classDepth - TestCase classDepth "Class depth"
 			 } ] ]
