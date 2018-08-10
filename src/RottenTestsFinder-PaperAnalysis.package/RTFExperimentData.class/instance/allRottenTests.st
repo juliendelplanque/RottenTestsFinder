@@ -1,3 +1,3 @@
 computed
 allRottenTests
-	^ self tests select: #last
+	^ self tests select: [ :array | array at: 11 ]
