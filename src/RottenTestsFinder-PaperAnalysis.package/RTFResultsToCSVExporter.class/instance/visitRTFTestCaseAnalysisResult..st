@@ -13,5 +13,5 @@ visitRTFTestCaseAnalysisResult: aRTFTestCaseAnalysisResult
 			aRTFTestCaseAnalysisResult testContainsReturn.
 			aRTFTestCaseAnalysisResult contextDependentRottenAsserts size.
 			aRTFTestCaseAnalysisResult isRotten. "is rotten?"
-			aRTFTestCaseAnalysisResult testCase origin classDepth - TestCase classDepth "Class depth"
+			aRTFTestCaseAnalysisResult testCase class classDepth - TestCase classDepth "Class depth"
 		}
