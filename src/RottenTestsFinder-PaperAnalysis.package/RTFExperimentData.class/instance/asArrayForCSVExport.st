@@ -2,6 +2,10 @@ converting
 asArrayForCSVExport
 	^ { 
 		self name.
+		self testClassesCount.
+		self minimumOfClassDepth.
+		self medianOfClassDepth.
+		self maximumOfClassDepth.
 		self testsCount.
 		self helpersCount.
 		self minimumOfMaxHelperDepths.

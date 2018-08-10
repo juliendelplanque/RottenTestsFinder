@@ -2,6 +2,10 @@ accessing
 headerArrayForCSVExport
 	^ #(
 	'Project'
+	'Number of test classes'
+	'Minimum class depth'
+	'Median class depth'
+	'Maximum class depth'
 	'Number of tests'
 	'Number of helpers'
 	'Minimum max helper depth'
