@@ -3,7 +3,7 @@ visitRTFTestCaseAnalysisResult: aRTFTestCaseAnalysisResult
 	self neoCSV
 		nextPut: { 
 			self currentPackageName.
-			aRTFTestCaseAnalysisResult testCase .
+			aRTFTestCaseAnalysisResult testCase class , '>>' , aRTFTestCaseAnalysisResult testCase selector  .
 			aRTFTestCaseAnalysisResult helperMaxDepth. "prof max"
 			aRTFTestCaseAnalysisResult firstLevelPrimitivesCalls size. "# helpers sur le premier niveau"
 			aRTFTestCaseAnalysisResult primitivesCalls size. "# assert impliqués dans l'execution"
