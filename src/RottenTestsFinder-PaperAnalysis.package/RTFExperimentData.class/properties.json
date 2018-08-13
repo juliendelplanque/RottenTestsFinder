@@ -8,7 +8,8 @@
 	"instvars" : [
 		"name",
 		"tests",
-		"helpers"
+		"helpers",
+		"helperCalls"
 	],
 	"name" : "RTFExperimentData",
 	"type" : "normal"

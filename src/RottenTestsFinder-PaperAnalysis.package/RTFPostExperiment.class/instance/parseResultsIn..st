@@ -39,4 +39,12 @@ parseResultsIn: aDirectory
 							addIntegerField;
 							addFieldConverter: [ :str | str = 'true' ];
 							addIntegerField;
+							upToEnd) ].
+		(aDirectory / ('rotten-helper-calls-',expName,'.csv')) readStreamDo: [ :s |
+			expData
+				helperCalls: ((NeoCSVReader on: s)
+							skipHeader;
+							addField;
+							addIntegerField;
+							addField;
 							upToEnd) ] ]

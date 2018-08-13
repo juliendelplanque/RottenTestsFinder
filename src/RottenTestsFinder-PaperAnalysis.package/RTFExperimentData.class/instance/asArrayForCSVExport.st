@@ -17,6 +17,9 @@ asArrayForCSVExport
 		self minimumOfHelperCallsInTestCounts.
 		self medianOfHelperCallsInTestCounts.
 		self maximumOfHelperCallsInTestCounts.
+		self minimumOfHelperCallDefinitionDelta.
+		self medianOfHelperCallDefinitionDelta.
+		self maximumOfHelperCallDefinitionDelta.
 		self rottenTestsCategory1Count.
 		self rottenTestsCategory2Count.
 		self rottenTestsCategory3Count.
