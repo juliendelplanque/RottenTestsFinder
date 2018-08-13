@@ -1,0 +1,14 @@
+{
+	"commentStamp" : "",
+	"super" : "RTFSelfCallVisitor",
+	"category" : "RottenTestsFinder-PaperAnalysis",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"parentsStack",
+		"parentHelperPairs"
+	],
+	"name" : "RTFHelperAndParentCollector",
+	"type" : "normal"
+}

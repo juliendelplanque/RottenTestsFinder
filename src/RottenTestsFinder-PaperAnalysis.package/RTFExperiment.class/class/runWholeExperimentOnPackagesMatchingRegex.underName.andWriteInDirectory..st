@@ -7,3 +7,7 @@ runWholeExperimentOnPackagesMatchingRegex: aRegex underName: expName andWriteInD
 	(aFileReference / ('rotten-helpers-{1}.csv' format: { expName }))
 		writeStreamDo: [ :s |
 			self runHelperExperimentOnPackagesMatchingRegex: aRegex andWriteResultsOn: s ].
+	
+	(aFileReference / ('rotten-helper-calls-{1}.csv' format: { expName }))
+		writeStreamDo: [ :s |
+			self runHelperCallsExperimentOnPackagesMatchingRegex: aRegex andWriteResultsOn: s ]

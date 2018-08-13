@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "",
+	"super" : "RTFResultsToCSVExporter",
+	"category" : "RottenTestsFinder-PaperAnalysis",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "RTFHelperCallsToCSVExporter",
+	"type" : "normal"
+}
