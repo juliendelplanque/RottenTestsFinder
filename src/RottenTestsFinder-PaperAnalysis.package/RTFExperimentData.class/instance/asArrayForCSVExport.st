@@ -2,6 +2,7 @@ converting
 asArrayForCSVExport
 	^ { 
 		self name.
+		self projectDescription.
 		self packagesCount.
 		self classesCount.
 		self testClassesCount.

@@ -60,4 +60,5 @@ parseResultsIn: aDirectory
 									addIntegerField;
 									addIntegerField;
 									addIntegerField;
+									addField;
 									upToEnd) detect: [ :array | array first = expName ]) ] ]

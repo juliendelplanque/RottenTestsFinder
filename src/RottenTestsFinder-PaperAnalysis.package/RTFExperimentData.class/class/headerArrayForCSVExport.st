@@ -2,6 +2,7 @@ accessing
 headerArrayForCSVExport
 	^ #(
 	'Project'
+	'Description'
 	'Number of packages'
 	'Number of classes'
 	'Number of test classes'
