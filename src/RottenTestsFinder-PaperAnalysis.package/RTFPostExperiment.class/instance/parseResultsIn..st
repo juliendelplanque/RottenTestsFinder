@@ -6,59 +6,8 @@ parseResultsIn: aDirectory
 		expData := RTFExperimentData new
 						name: expName;
 						yourself.
-		csvFile readStreamDo: [ :s |
-			expData
-				tests: ((NeoCSVReader on: s)
-							skipHeader;
-							addField;
-							addField;
-							addIntegerField;
-							addIntegerField;
-							addIntegerField;
-							addIntegerField;
-							addIntegerField;
-							addIntegerField;
-							addFieldConverter: [ :str | str = 'true' ];
-							addIntegerField;
-							addFieldConverter: [ :str | str = 'true' ];
-							addIntegerField;
-							upToEnd) ].
-		(aDirectory / ('rotten-helpers-',expName,'.csv')) readStreamDo: [ :s |
-			expData
-				helpers: ((NeoCSVReader on: s)
-							skipHeader;
-							addField;
-							addField;
-							addIntegerField;
-							addIntegerField;
-							addIntegerField;
-							addIntegerField;
-							addIntegerField;
-							addIntegerField;
-							addFieldConverter: [ :str | str = 'true' ];
-							addIntegerField;
-							addFieldConverter: [ :str | str = 'true' ];
-							addIntegerField;
-							upToEnd) ].
-		(aDirectory / ('rotten-helper-calls-',expName,'.csv')) readStreamDo: [ :s |
-			expData
-				helperCalls: ((NeoCSVReader on: s)
-							skipHeader;
-							addField;
-							addIntegerField;
-							addField;
-							upToEnd) ].
-		(aDirectory / '..' / 'projects-meta.csv') readStreamDo: [ :s |
-			expData
-				projectData: (((NeoCSVReader on: s)
-									separator: $;;
-									skipHeader;
-									addField;
-									addField;
-									addField;
-									addField;
-									addIntegerField;
-									addIntegerField;
-									addIntegerField;
-									addField;
-									upToEnd) detect: [ :array | array first = expName ]) ] ]
+		expData
+			parseTestsDataIn: csvFile;
+			parseHelpersDataIn: (aDirectory / ('rotten-helpers-',expName,'.csv'));
+			parseHelperCallsDataIn: (aDirectory / ('rotten-helper-calls-',expName,'.csv'));
+			parseProjectIn: (aDirectory / '..' / 'projects-meta.csv') ]
