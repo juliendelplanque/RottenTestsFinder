@@ -1,17 +1,13 @@
 {
-	"commentStamp" : "JulienDelplanque 8/9/2018 11:32",
+	"commentStamp" : "",
 	"super" : "Object",
 	"category" : "RottenTestsFinder-PaperAnalysis",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [
-		"name",
-		"tests",
-		"helpers",
-		"helperCalls",
-		"projectData"
+		"packages"
 	],
-	"name" : "RTFExperimentData",
+	"name" : "RTFBaselinePackagesCollector",
 	"type" : "normal"
 }

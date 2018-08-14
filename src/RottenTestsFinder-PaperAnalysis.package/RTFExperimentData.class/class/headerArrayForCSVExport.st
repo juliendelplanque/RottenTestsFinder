@@ -2,6 +2,8 @@ accessing
 headerArrayForCSVExport
 	^ #(
 	'Project'
+	'Number of packages'
+	'Number of classes'
 	'Number of test classes'
 	'Minimum class depth'
 	'Median class depth'

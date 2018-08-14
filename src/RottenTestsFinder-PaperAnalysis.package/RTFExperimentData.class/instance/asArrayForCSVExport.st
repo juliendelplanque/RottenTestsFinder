@@ -2,6 +2,8 @@ converting
 asArrayForCSVExport
 	^ { 
 		self name.
+		self packagesCount.
+		self classesCount.
 		self testClassesCount.
 		self minimumOfClassDepth.
 		self medianOfClassDepth.

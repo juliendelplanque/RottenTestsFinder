@@ -1,3 +1,3 @@
 computed-metrics
 testClassesCount
-	^ self testClassesDepth size
+	^ self projectData at: 7

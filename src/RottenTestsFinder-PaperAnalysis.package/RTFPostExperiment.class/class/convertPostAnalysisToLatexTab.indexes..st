@@ -9,7 +9,7 @@ convertPostAnalysisToLatexTab: aFileReference indexes: aCollectionOfInteger
 			index := 1.
 			selected := array select: [ :e | index := index +1. aCollectionOfInteger includes: index - 1 ].
 			selected
-				do: [ :e | s << (e ifNil: [ 's' ]) ]
+				do: [ :e | s << (e ifNil: [ '/' ]) ]
 				separatedBy: [ s << ' & ' ]
 			] separatedBy: [ 
 				s

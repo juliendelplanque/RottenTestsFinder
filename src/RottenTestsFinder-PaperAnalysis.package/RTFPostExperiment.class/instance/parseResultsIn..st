@@ -47,4 +47,17 @@ parseResultsIn: aDirectory
 							addField;
 							addIntegerField;
 							addField;
-							upToEnd) ] ]
+							upToEnd) ].
+		(aDirectory / '..' / 'projects-meta.csv') readStreamDo: [ :s |
+			expData
+				projectData: (((NeoCSVReader on: s)
+									separator: $;;
+									skipHeader;
+									addField;
+									addField;
+									addField;
+									addField;
+									addIntegerField;
+									addIntegerField;
+									addIntegerField;
+									upToEnd) detect: [ :array | array first = expName ]) ] ]
