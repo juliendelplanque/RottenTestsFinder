@@ -10,7 +10,7 @@ testVisitRTFSelfCallNode
 		assert: cleanedTree1 subCalls first subCalls size equals: 1;
 		assert: cleanedTree1 subCalls first subCalls first compiledMethod equals: 'Fake CM 3';
 		assert: cleanedTree1 subCalls first subCalls first subCalls size equals: 1;
-		assert: cleanedTree1 subCalls first subCalls first subCalls first compiledMethod equals: TestAsserter >> #assert:.
+		assert: cleanedTree1 subCalls first subCalls first subCalls first compiledMethod equals: (TestAsserter lookupSelector: #assert:).
 		
 	cleanedTree2 :=  tree2 acceptVisitor: RTFSelfCallTreeCleaner new.
 	

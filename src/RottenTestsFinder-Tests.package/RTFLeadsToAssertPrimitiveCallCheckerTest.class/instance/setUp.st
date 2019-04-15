@@ -1,16 +1,16 @@
 initialization
 setUp
 	tree1 := RTFSelfCallRootNode new
-				compiledMethod: (RTFFakeTestClass >> #testWithHelperHelper);
+				compiledMethod: (RTFFakeTestClass lookupSelector: #testWithHelperHelper);
 				subCalls: { 
 					RTFSelfCallRootNode new
-						compiledMethod: RTFFakeTestClass >> #helperHelper;
+						compiledMethod: (RTFFakeTestClass lookupSelector: #helperHelper);
 						subCalls: { 
 							RTFSelfCallRootNode new
-								compiledMethod: RTFFakeTestClass >> #assertHelper;
+								compiledMethod: (RTFFakeTestClass lookupSelector: #assertHelper);
 								subCalls: { 
 									RTFSelfCallRootNode new
-										compiledMethod: TestAsserter >> #assert:;
+										compiledMethod: (TestAsserter lookupSelector: #assert:);
 										subCalls: #()
 									};
 								yourself
@@ -19,10 +19,10 @@ setUp
 					};
 				yourself.
 	tree2 := RTFSelfCallRootNode new
-				compiledMethod: (RTFFakeTestClass >> #testWithNoAssertionInHelperRun);
+				compiledMethod: (RTFFakeTestClass lookupSelector: #testWithNoAssertionInHelperRun);
 				subCalls: { 
 					RTFSelfCallRootNode new
-						compiledMethod: RTFFakeTestClass >> #rottenHelper;
+						compiledMethod: (RTFFakeTestClass lookupSelector: #rottenHelper);
 						subCalls: #();
 						yourself
 					};

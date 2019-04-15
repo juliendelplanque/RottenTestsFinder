@@ -10,7 +10,7 @@ setUp
 								compiledMethod: 'Fake CM 3';
 								subCalls: { 
 									RTFSelfCallRootNode new
-										compiledMethod: TestAsserter >> #assert:;
+										compiledMethod: (TestAsserter lookupSelector: #assert:);
 										subCalls: #()
 									};
 								yourself.
