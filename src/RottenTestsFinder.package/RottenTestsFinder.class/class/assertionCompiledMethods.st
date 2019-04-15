@@ -1,7 +1,7 @@
 accessing
 assertionCompiledMethods
 	"Returns the list of CompiledMethods used to assert things during tests."
-	^ ((TestAsserter methodsInProtocol: 'asserting')
+	^ ((Object methodsInProtocol: 'asserting') , (TestAsserter methodsInProtocol: 'asserting')
 			collect: [ :o | 
 				o class = RTFMethodTracer
 					ifTrue: [ o method ]
