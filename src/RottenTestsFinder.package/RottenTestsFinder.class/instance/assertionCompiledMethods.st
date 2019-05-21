@@ -1,3 +1,0 @@
-accessing
-assertionCompiledMethods
-	^ self class assertionCompiledMethods

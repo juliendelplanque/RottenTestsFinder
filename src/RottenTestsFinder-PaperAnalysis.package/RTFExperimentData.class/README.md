@@ -1,1 +1,0 @@
-I am data extracted from a CSV file generated during the experiment.

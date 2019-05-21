@@ -1,3 +1,0 @@
-tests
-testCallingSuperHelper
-	super superAssertHelper

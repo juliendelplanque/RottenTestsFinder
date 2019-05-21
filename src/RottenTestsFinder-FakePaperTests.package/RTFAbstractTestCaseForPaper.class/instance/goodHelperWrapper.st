@@ -1,3 +1,0 @@
-helper
-goodHelperWrapper
-	self goodHelper

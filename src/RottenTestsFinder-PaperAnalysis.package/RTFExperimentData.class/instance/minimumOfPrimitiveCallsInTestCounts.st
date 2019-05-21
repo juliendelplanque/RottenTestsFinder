@@ -1,3 +1,0 @@
-computed-metrics
-minimumOfPrimitiveCallsInTestCounts
-	^ self primitiveCallsInTestCounts min

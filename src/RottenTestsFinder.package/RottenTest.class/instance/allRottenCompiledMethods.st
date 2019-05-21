@@ -1,3 +1,0 @@
-accessing
-allRottenCompiledMethods
-	^ { self compiledMethod }

@@ -1,1 +1,0 @@
-A RTFSelfCallInterpreterTest is a test class for testing the behavior of RTFSelfCallInterpreter

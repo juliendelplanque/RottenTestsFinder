@@ -1,3 +1,0 @@
-accessing
-assertCallSitesGettingFalseLiteral: anObject
-	assertCallSitesGettingFalseLiteral := anObject

@@ -1,3 +1,0 @@
-*RottenTestsFinder
-generateRottenTestFromCompiledMethod: aCompiledMethod testCase: aTestResult
-	^ RottenTestImplementedInTrait compiledMethod: aCompiledMethod

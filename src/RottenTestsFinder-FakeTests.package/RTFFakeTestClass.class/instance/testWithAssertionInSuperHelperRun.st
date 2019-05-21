@@ -1,3 +1,0 @@
-tests
-testWithAssertionInSuperHelperRun
-	self superAssertHelper

@@ -1,3 +1,0 @@
-computed-metrics
-medianOfHelperCallsInTestCounts
-	^ self helperCallsInTestCounts median

@@ -1,3 +1,0 @@
-computed-metrics
-minimumOfHelperCallsInTestCounts
-	^ self helperCallsInTestCounts min

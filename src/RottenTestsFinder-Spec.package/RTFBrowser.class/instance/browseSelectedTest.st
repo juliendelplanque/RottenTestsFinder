@@ -1,3 +1,0 @@
-actions
-browseSelectedTest
-	self resultSelected rtfBrowserBrowse

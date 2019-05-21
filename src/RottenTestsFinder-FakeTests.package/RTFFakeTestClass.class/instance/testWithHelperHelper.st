@@ -1,3 +1,0 @@
-tests
-testWithHelperHelper
-	self helperHelper

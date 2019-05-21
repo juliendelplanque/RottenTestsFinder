@@ -1,3 +1,0 @@
-tests
-testWithNoAssertionInHelperRun
-	self rottenHelper

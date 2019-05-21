@@ -1,3 +1,0 @@
-tests
-testWithNoAssertionInSuperHelperRun
-	self superNotAssertHelper

@@ -1,3 +1,0 @@
-adding
-addClassInWhichTestIsRotten: aClass
-	traitUsersInWhichTestIsRotten add: aClass

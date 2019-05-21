@@ -1,3 +1,0 @@
-accessing
-traitUsersInWhichTestIsRotten: anObject
-	traitUsersInWhichTestIsRotten := anObject

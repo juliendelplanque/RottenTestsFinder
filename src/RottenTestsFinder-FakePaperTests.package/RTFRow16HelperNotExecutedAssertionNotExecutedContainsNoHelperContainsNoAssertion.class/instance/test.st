@@ -1,3 +1,0 @@
-tests
-test
-	"Does nothing."
