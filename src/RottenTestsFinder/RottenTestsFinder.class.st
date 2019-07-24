@@ -41,17 +41,6 @@ RottenTestsFinder class >> assertionSelectors [
 	^ self assertionCompiledMethods collect: #selector
 ]
 
-{ #category : #'world menu' }
-RottenTestsFinder class >> menuCommandOn: aBuilder [ 
-	<worldMenu> 
-	(aBuilder item: #'Rotten Tests Finder')
-		parent: #Tools;
-		order: 0.47;
-		action:[self openBrowser]; 
-		icon: (Smalltalk ui iconNamed: #smallFind).
-	aBuilder withSeparatorAfter.
-]
-
 { #category : #analyzing }
 RottenTestsFinder >> analyze [
 	self runTests.
