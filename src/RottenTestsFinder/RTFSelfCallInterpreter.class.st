@@ -16,7 +16,7 @@ Class {
 		'callStack',
 		'rootSelfCall'
 	],
-	#category : 'RottenTestsFinder-SelfInterpreter'
+	#category : #'RottenTestsFinder-SelfInterpreter'
 }
 
 { #category : #example }
@@ -122,6 +122,12 @@ RTFSelfCallInterpreter >> visitLiteralArrayNode: aRBLiteralArrayNode [
 { #category : #visiting }
 RTFSelfCallInterpreter >> visitLiteralNode: aRBLiteralValueNode [ 
 	
+	"Do nothing with literals"
+	^ self
+]
+
+{ #category : #visiting }
+RTFSelfCallInterpreter >> visitLiteralValueNode: aRBLiteralValueNode [ 
 	"Do nothing with literals"
 	^ self
 ]
