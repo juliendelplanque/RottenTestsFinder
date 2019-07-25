@@ -9,8 +9,13 @@ Class {
 		'testsVisitedCount',
 		'testsRunCount'
 	],
-	#category : 'RottenTestsFinder-Results'
+	#category : #'RottenTestsFinder-Results'
 }
+
+{ #category : #visiting }
+RottenTestsSet >> acceptVisitor: aRTFResultsVisitor [
+	^ aRTFResultsVisitor visitRottenTestsSet: self
+]
 
 { #category : #adding }
 RottenTestsSet >> add: aRottenTest [

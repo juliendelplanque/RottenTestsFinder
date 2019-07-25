@@ -7,7 +7,7 @@ Class {
 	#instVars : [
 		'testHelperCompiledMethods'
 	],
-	#category : 'RottenTestsFinder-Results'
+	#category : #'RottenTestsFinder-Results'
 }
 
 { #category : #'instance creation' }
@@ -15,6 +15,11 @@ RottenTestHelper class >> compiledMethod: compiledMethod testHelperCompiledMetho
 	^ (self compiledMethod: compiledMethod)
 			testHelperCompiledMethods: testHelperCompiledMethodsRun;
 			yourself
+]
+
+{ #category : #visiting }
+RottenTestHelper >> acceptVisitor: aRTFResultsVisitor [
+	^ aRTFResultsVisitor visitRottenTestHelper: self
 ]
 
 { #category : #testing }

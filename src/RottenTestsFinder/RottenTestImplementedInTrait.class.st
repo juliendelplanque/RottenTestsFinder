@@ -9,7 +9,7 @@ Class {
 	#instVars : [
 		'traitUsersInWhichTestIsRotten'
 	],
-	#category : 'RottenTestsFinder-Results'
+	#category : #'RottenTestsFinder-Results'
 }
 
 { #category : #'instance creation' }
@@ -17,6 +17,11 @@ RottenTestImplementedInTrait class >> compiledMethod: aCompiledMethod [
 	^ (super compiledMethod: aCompiledMethod)
 			traitUsersInWhichTestIsRotten: (Set with: aCompiledMethod origin);
 			yourself
+]
+
+{ #category : #visiting }
+RottenTestImplementedInTrait >> acceptVisitor: aRTFResultsVisitor [
+	^ aRTFResultsVisitor visitRottenTestImplementedInTrait: self
 ]
 
 { #category : #adding }

@@ -9,7 +9,7 @@ Class {
 	#instVars : [
 		'subclassesInWhichTestIsRotten'
 	],
-	#category : 'RottenTestsFinder-Results'
+	#category : #'RottenTestsFinder-Results'
 }
 
 { #category : #'instance creation' }
@@ -22,6 +22,11 @@ RottenTestImplementedInSuperClass class >> compiledMethod: aCompiledMethod subcl
 	^ (self compiledMethod: aCompiledMethod)
 		subclassesInWhichTestIsRotten: aCollectionOfClasses;
 		yourself
+]
+
+{ #category : #visiting }
+RottenTestImplementedInSuperClass >> acceptVisitor: aRTFResultsVisitor [
+	^ aRTFResultsVisitor visitRottenTestImplementedInSuperClass: self
 ]
 
 { #category : #adding }

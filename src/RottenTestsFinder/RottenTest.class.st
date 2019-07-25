@@ -8,7 +8,7 @@ Class {
 		'compiledMethod',
 		'callSites'
 	],
-	#category : 'RottenTestsFinder-Results'
+	#category : #'RottenTestsFinder-Results'
 }
 
 { #category : #'instance creation' }
@@ -22,6 +22,11 @@ RottenTest class >> compiledMethod: aCompiledMethod [
 RottenTest >> = anObject [
 	^ self class = anObject class
 		and: [ self compiledMethod = anObject compiledMethod ]
+]
+
+{ #category : #visiting }
+RottenTest >> acceptVisitor: aRTFResultsVisitor [
+	^ aRTFResultsVisitor visitRottenTest: self
 ]
 
 { #category : #'rotten tests set' }
