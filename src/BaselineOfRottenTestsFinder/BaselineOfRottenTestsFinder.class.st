@@ -1,7 +1,7 @@
 Class {
 	#name : #BaselineOfRottenTestsFinder,
 	#superclass : #BaselineOf,
-	#category : #BaselineOfRottenTestsFinder
+	#category : 'BaselineOfRottenTestsFinder'
 }
 
 { #category : #baselines }
@@ -14,7 +14,8 @@ BaselineOfRottenTestsFinder >> baseline: spec [
 			package: #'RottenTestsFinder-Tests' with: [ spec requires: #('RottenTestsFinder' 'RottenTestsFinder-FakeTests') ];
 			package: #'RottenTestsFinder-FakeTests';
 			package: #'RottenTestsFinder-PaperTests' with: [ spec requires: #('RottenTestsFinder' 'RottenTestsFinder-FakePaperTests') ];
-			package: #'RottenTestsFinder-FakePaperTests'.
+			package: #'RottenTestsFinder-FakePaperTests';
+			package: #'RottenTestsFinder-PaperAnalysis' with: [ spec requires: #('RottenTestsFinder') ].
 			
 		spec
 			for: #'pharo7.x'
