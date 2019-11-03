@@ -18,7 +18,7 @@ BaselineOfRottenTestsFinder >> baseline: spec [
 			package: #'RottenTestsFinder-PaperAnalysis' with: [ spec requires: #('RottenTestsFinder' 'NeoCSV') ].
 		spec baseline: 'NeoCSV' with: [ spec repository: 'github://svenvc/NeoCSV/repository' ].
 		spec
-			for: #'pharo7.x'
+			for: #('pharo7.x' 'pharo6.x')
 			do: [ 
 				spec
 					package: #'RottenTestsFinder' with: [ spec requires: #('SUnitVisitor') ].
