@@ -1,9 +1,9 @@
 Class {
 	#name : #RTFPackageAnalyzer,
-	#superclass : #Object,
+	#superclass : #SUnitVisitor,
 	#traits : 'TSUnitVisitor @ {#privateVisitRPackage:->#visitRPackage:. #privateVisitTestCaseClass:->#visitTestCaseClass:}',
 	#classTraits : 'TSUnitVisitor classTrait',
-	#category : 'RottenTestsFinder-PaperAnalysis'
+	#category : #'RottenTestsFinder-PaperAnalysis'
 }
 
 { #category : #testing }
@@ -35,11 +35,9 @@ RTFPackageAnalyzer >> loopSelectors [
 
 { #category : #visiting }
 RTFPackageAnalyzer >> visitRPackage: aRPackage [
-	"Redefine #privateVisitRPackage: in order to wrap the result in a custom object.
-	"
 	^ RTFRPackageAnalysisResult new
 		package: aRPackage;
-		testCaseClassesAnalysisResults: (self privateVisitRPackage: aRPackage);
+		testCaseClassesAnalysisResults: (super visitRPackage: aRPackage);
 		yourself
 ]
 
@@ -93,6 +91,6 @@ RTFPackageAnalyzer >> visitTestCase: aTestCase [
 RTFPackageAnalyzer >> visitTestCaseClass: aTestCaseClass [
 	^ RTFTestCaseClassAnalysisResult new
 		testCaseClass: aTestCaseClass;
-		testCaseAnalysisResults: (self privateVisitTestCaseClass: aTestCaseClass);
+		testCaseAnalysisResults: (super visitTestCaseClass: aTestCaseClass);
 		yourself
 ]
