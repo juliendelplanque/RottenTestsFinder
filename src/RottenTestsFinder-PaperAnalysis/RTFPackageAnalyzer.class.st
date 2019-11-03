@@ -1,8 +1,6 @@
 Class {
 	#name : #RTFPackageAnalyzer,
 	#superclass : #SUnitVisitor,
-	#traits : 'TSUnitVisitor @ {#privateVisitRPackage:->#visitRPackage:. #privateVisitTestCaseClass:->#visitTestCaseClass:}',
-	#classTraits : 'TSUnitVisitor classTrait',
 	#category : #'RottenTestsFinder-PaperAnalysis'
 }
 
